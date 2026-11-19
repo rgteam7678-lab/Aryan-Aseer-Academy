@@ -1,0 +1,1111 @@
+package com.example.data.curriculum
+
+import com.example.data.model.AcademicStream
+import com.example.data.model.ChapterData
+import com.example.data.model.FormulaItem
+import com.example.data.model.QuizQuestion
+import com.example.data.model.SolvedExample
+import com.example.data.model.SubjectCategory
+import com.example.data.model.SubjectData
+
+internal object CurriculumMathComplete {
+
+    private val allStreams = setOf(
+        AcademicStream.GENERAL,
+        AcademicStream.SCIENCE,
+        AcademicStream.COMMERCE,
+        AcademicStream.ARTS,
+    )
+
+    val subjects: List<SubjectData> = listOf(
+        // ==================== CLASS 7 MATHEMATICS ====================
+        SubjectData(
+            id = "c7_math",
+            classLevel = 7,
+            streams = allStreams,
+            name = "Mathematics",
+            subtitle = "Full Class 7: Integers, Fractions, Equations, Triangles, Exponents & Area",
+            category = SubjectCategory.MATH,
+            chapters = listOf(
+                ChapterData(
+                    id = "c7_math_ch1",
+                    classLevel = 7,
+                    subjectId = "c7_math",
+                    subjectName = "Mathematics",
+                    number = 1,
+                    title = "Integers, Fractions & Decimals",
+                    estimatedMinutes = 22,
+                    weightage = "12 Marks",
+                    summary = "Master signed integer properties, reciprocal division of fractions, and decimal multiplication/division.",
+                    keyPoints = listOf(
+                        "Same-sign integer product is positive; opposite-sign product is negative. Division by 0 is undefined.",
+                        "Zero is the additive identity (a + 0 = a); 1 is the multiplicative identity (a × 1 = a).",
+                        "Dividing by a fraction equals multiplying by its reciprocal: (a/b) ÷ (c/d) = (a/b) × (d/c).",
+                        "Multiplying a decimal by 10, 100, 1000 shifts the decimal point right by 1, 2, 3 places.",
+                    ),
+                    formulas = listOf(
+                        FormulaItem("Distributive Law", "a × (b + c) = ab + ac", "Speeds up mental integer calculation"),
+                        FormulaItem("Fraction Division", "(a / b) ÷ (c / d) = (a × d) / (b × c)", "Keep-Change-Flip rule"),
+                    ),
+                    solvedExample = SolvedExample(
+                        problem = "Evaluate (-26) × 48 + (-48) × (-36) using distributive property.",
+                        steps = listOf(
+                            "Rewrite (-48) × (-36) = 48 × 36.",
+                            "Take 48 common: 48 × (-26 + 36) = 48 × 10 = 480.",
+                        ),
+                        answer = "480",
+                    ),
+                    quizQuestions = listOf(
+                        QuizQuestion(
+                            id = "c7_m1_q1",
+                            prompt = "What is the value of (-12) × (-5) × (-2)?",
+                            options = listOf("120", "-120", "-60", "60"),
+                            correctIndex = 1,
+                            explanation = "(-12 × -5) = 60; 60 × (-2) = -120.",
+                        ),
+                        QuizQuestion(
+                            id = "c7_m1_q2",
+                            prompt = "Calculate (3/4) ÷ (9/8):",
+                            options = listOf("27/32", "2/3", "3/2", "1/2"),
+                            correctIndex = 1,
+                            explanation = "(3/4) × (8/9) = 24/36 = 2/3.",
+                        ),
+                        QuizQuestion(
+                            id = "c7_m1_q3",
+                            prompt = "What is 2.45 × 100?",
+                            options = listOf("24.5", "245", "0.0245", "2450"),
+                            correctIndex = 1,
+                            explanation = "Multiplying by 100 shifts the decimal point two places right → 245.",
+                        ),
+                    ),
+                ),
+                ChapterData(
+                    id = "c7_math_ch2",
+                    classLevel = 7,
+                    subjectId = "c7_math",
+                    subjectName = "Mathematics",
+                    number = 2,
+                    title = "Simple Equations & Algebraic Expressions",
+                    estimatedMinutes = 24,
+                    weightage = "12 Marks",
+                    summary = "Solve balanced linear equations by transposition and simplify polynomials by combining like terms.",
+                    keyPoints = listOf(
+                        "Transposing a term across '=' reverses its operation (+ ↔ -, × ↔ ÷).",
+                        "Like terms have identical variable factors with identical powers (e.g., 5x²y and -2x²y).",
+                        "Monomial (1 term), Binomial (2 terms), Trinomial (3 terms).",
+                    ),
+                    formulas = listOf(
+                        FormulaItem("Linear Equation Root", "ax + b = c  ⇒  x = (c - b) / a", "Always verify root by substituting back"),
+                        FormulaItem("Like Term Addition", "p·x + q·x = (p + q)·x", "Never combine unlike powers like x and x²"),
+                    ),
+                    solvedExample = SolvedExample(
+                        problem = "Solve for m: 4(m + 3) = 28.",
+                        steps = listOf(
+                            "Divide both sides by 4: m + 3 = 7.",
+                            "Transpose +3 to RHS: m = 7 - 3 = 4.",
+                        ),
+                        answer = "m = 4",
+                    ),
+                    quizQuestions = listOf(
+                        QuizQuestion(
+                            id = "c7_m2_q1",
+                            prompt = "Solve: 5p + 2 = 17",
+                            options = listOf("2", "3", "4", "5"),
+                            correctIndex = 1,
+                            explanation = "5p = 17 - 2 = 15 ⇒ p = 3.",
+                        ),
+                        QuizQuestion(
+                            id = "c7_m2_q2",
+                            prompt = "Simplify: (4x - 3y) + (2x + 7y)",
+                            options = listOf("6x + 4y", "6x - 10y", "2x + 4y", "6x + 10y"),
+                            correctIndex = 0,
+                            explanation = "(4x + 2x) + (-3y + 7y) = 6x + 4y.",
+                        ),
+                        QuizQuestion(
+                            id = "c7_m2_q3",
+                            prompt = "What is the value of 3n² - 5 when n = -2?",
+                            options = listOf("7", "-17", "1", "17"),
+                            correctIndex = 0,
+                            explanation = "3(-2)² - 5 = 3(4) - 5 = 12 - 5 = 7.",
+                        ),
+                    ),
+                ),
+                ChapterData(
+                    id = "c7_math_ch3",
+                    classLevel = 7,
+                    subjectId = "c7_math",
+                    subjectName = "Mathematics",
+                    number = 3,
+                    title = "Lines, Angles, Triangles & Perimeter/Area",
+                    estimatedMinutes = 26,
+                    weightage = "14 Marks",
+                    summary = "Master parallel line angle pairs, triangle angle-sum & Pythagoras property, and circle/parallelogram areas.",
+                    keyPoints = listOf(
+                        "Complementary angles sum to 90°; Supplementary angles sum to 180°.",
+                        "When a transversal cuts parallel lines, corresponding and alternate interior angles are equal.",
+                        "Interior angle sum of any triangle = 180°; Exterior angle = sum of two interior opposite angles.",
+                    ),
+                    formulas = listOf(
+                        FormulaItem("Pythagoras Property", "c² = a² + b²", "c is hypotenuse opposite 90°"),
+                        FormulaItem("Circle & Triangle Area", "A_circle = πr²,  C = 2πr  |  A_tri = ½bh", "Parallelogram Area = base × height"),
+                    ),
+                    solvedExample = SolvedExample(
+                        problem = "Find the hypotenuse of a right triangle with legs 6 cm and 8 cm.",
+                        steps = listOf(
+                            "c² = 6² + 8² = 36 + 64 = 100.",
+                            "c = √100 = 10 cm.",
+                        ),
+                        answer = "10 cm",
+                    ),
+                    quizQuestions = listOf(
+                        QuizQuestion(
+                            id = "c7_m3_q1",
+                            prompt = "What is the supplement of a 115° angle?",
+                            options = listOf("55°", "65°", "75°", "25°"),
+                            correctIndex = 1,
+                            explanation = "180° - 115° = 65°.",
+                        ),
+                        QuizQuestion(
+                            id = "c7_m3_q2",
+                            prompt = "Circumference of a circle of radius 7 cm (π = 22/7) is:",
+                            options = listOf("22 cm", "44 cm", "154 cm", "88 cm"),
+                            correctIndex = 1,
+                            explanation = "C = 2 × (22/7) × 7 = 44 cm.",
+                        ),
+                        QuizQuestion(
+                            id = "c7_m3_q3",
+                            prompt = "Two interior angles of a triangle are 50° and 70°. The exterior angle at the third vertex is:",
+                            options = listOf("60°", "120°", "110°", "130°"),
+                            correctIndex = 1,
+                            explanation = "Exterior angle = sum of two opposite interior angles = 50° + 70° = 120°.",
+                        ),
+                    ),
+                ),
+                ChapterData(
+                    id = "c7_math_ch4",
+                    classLevel = 7,
+                    subjectId = "c7_math",
+                    subjectName = "Mathematics",
+                    number = 4,
+                    title = "Comparing Quantities, Rational Numbers & Exponents",
+                    estimatedMinutes = 24,
+                    weightage = "12 Marks",
+                    summary = "Solve percentage, profit-loss, simple interest, and exponent laws cleanly.",
+                    keyPoints = listOf(
+                        "Profit % and Loss % are ALWAYS calculated on Cost Price (CP).",
+                        "Any non-zero number raised to the power 0 equals 1 (a⁰ = 1).",
+                        "Standard scientific notation expresses large numbers as k × 10ⁿ where 1 ≤ k < 10.",
+                    ),
+                    formulas = listOf(
+                        FormulaItem("Simple Interest", "SI = (P × R × T) / 100,   Amount = P + SI", "Profit% = (Profit / CP) × 100"),
+                        FormulaItem("Laws of Exponents", "aᵐ × aⁿ = aᵐ⁺ⁿ  |  aᵐ ÷ aⁿ = aᵐ⁻ⁿ  |  (aᵐ)ⁿ = aᵐⁿ", "a⁰ = 1 (a ≠ 0)"),
+                    ),
+                    solvedExample = SolvedExample(
+                        problem = "Find Simple Interest on ₹4,000 for 3 years at 5% per annum.",
+                        steps = listOf(
+                            "SI = (4000 × 5 × 3) / 100 = 40 × 15 = ₹600.",
+                            "Total Amount = 4000 + 600 = ₹4,600.",
+                        ),
+                        answer = "SI = ₹600 (Amount = ₹4,600)",
+                    ),
+                    quizQuestions = listOf(
+                        QuizQuestion(
+                            id = "c7_m4_q1",
+                            prompt = "What is the value of (3⁰ + 5⁰) × 4⁰?",
+                            options = listOf("0", "1", "2", "8"),
+                            correctIndex = 2,
+                            explanation = "(1 + 1) × 1 = 2.",
+                        ),
+                        QuizQuestion(
+                            id = "c7_m4_q2",
+                            prompt = "An item bought for ₹500 is sold for ₹600. What is the Profit %?",
+                            options = listOf("10%", "15%", "20%", "25%"),
+                            correctIndex = 2,
+                            explanation = "Profit = 100; Profit% = (100/500) × 100 = 20%.",
+                        ),
+                        QuizQuestion(
+                            id = "c7_m4_q3",
+                            prompt = "Simplify: (2³ × 2⁴) ÷ 2⁵",
+                            options = listOf("2", "4", "8", "16"),
+                            correctIndex = 1,
+                            explanation = "2^(3+4-5) = 2² = 4.",
+                        ),
+                    ),
+                ),
+            ),
+        ),
+
+        // ==================== CLASS 8 MATHEMATICS ====================
+        SubjectData(
+            id = "c8_math",
+            classLevel = 8,
+            streams = allStreams,
+            name = "Mathematics",
+            subtitle = "Full Class 8: Linear Eq., Squares, Identities, Mensuration & CI",
+            category = SubjectCategory.MATH,
+            chapters = listOf(
+                ChapterData(
+                    id = "c8_math_ch1",
+                    classLevel = 8,
+                    subjectId = "c8_math",
+                    subjectName = "Mathematics",
+                    number = 1,
+                    title = "Algebraic Identities, Factorization & Linear Equations",
+                    estimatedMinutes = 26,
+                    weightage = "14 Marks",
+                    summary = "Solve equations with variables on both sides and factorize polynomials rapidly with identities.",
+                    keyPoints = listOf(
+                        "Collect variable terms on LHS and constant terms on RHS to solve ax + b = cx + d.",
+                        "Splitting the middle term factorizes x² + (a+b)x + ab = (x + a)(x + b).",
+                        "Always pull out the Greatest Common Factor (GCF) first before applying identities.",
+                    ),
+                    formulas = listOf(
+                        FormulaItem("Standard Identities", "(a ± b)² = a² ± 2ab + b²  |  a² - b² = (a + b)(a - b)", "Core Class 8 factorization tools"),
+                        FormulaItem("Product Identity", "(x + a)(x + b) = x² + (a + b)x + ab", "Fast expansion & factoring"),
+                    ),
+                    solvedExample = SolvedExample(
+                        problem = "Evaluate 99² using an algebraic identity.",
+                        steps = listOf(
+                            "99² = (100 - 1)² = 100² - 2(100)(1) + 1².",
+                            "10000 - 200 + 1 = 9801.",
+                        ),
+                        answer = "9801",
+                    ),
+                    quizQuestions = listOf(
+                        QuizQuestion(
+                            id = "c8_m1_q1",
+                            prompt = "Solve for x: 3x - 7 = 2x + 5",
+                            options = listOf("2", "12", "-2", "6"),
+                            correctIndex = 1,
+                            explanation = "3x - 2x = 5 + 7 ⇒ x = 12.",
+                        ),
+                        QuizQuestion(
+                            id = "c8_m1_q2",
+                            prompt = "Factorize: x² - 49",
+                            options = listOf("(x - 7)²", "(x + 7)²", "(x + 7)(x - 7)", "(x + 49)(x - 1)"),
+                            correctIndex = 2,
+                            explanation = "Difference of squares: x² - 7² = (x + 7)(x - 7).",
+                        ),
+                        QuizQuestion(
+                            id = "c8_m1_q3",
+                            prompt = "Factorize: x² + 7x + 12",
+                            options = listOf("(x + 3)(x + 4)", "(x + 2)(x + 6)", "(x - 3)(x - 4)", "(x + 1)(x + 12)"),
+                            correctIndex = 0,
+                            explanation = "3 + 4 = 7 and 3 × 4 = 12 ⇒ (x + 3)(x + 4).",
+                        ),
+                    ),
+                ),
+                ChapterData(
+                    id = "c8_math_ch2",
+                    classLevel = 8,
+                    subjectId = "c8_math",
+                    subjectName = "Mathematics",
+                    number = 2,
+                    title = "Mensuration, Quadrilaterals & Compound Interest",
+                    estimatedMinutes = 26,
+                    weightage = "14 Marks",
+                    summary = "Compute volumes & surface areas of solids, polygon angle sums, and annual/half-yearly Compound Interest.",
+                    keyPoints = listOf(
+                        "Sum of exterior angles of ANY convex polygon is always 360°; interior angle sum = (n - 2) × 180°.",
+                        "Diagonals of a rhombus bisect each other at 90°; Area = ½ × d₁ × d₂.",
+                        "1 m³ = 1000 litres; 1000 cm³ = 1 litre.",
+                    ),
+                    formulas = listOf(
+                        FormulaItem("Cylinder & Cuboid", "Cylinder: V = πr²h, TSA = 2πr(r+h) | Cube: TSA = 6a², V = a³", "Trapezium Area = ½(a + b)h"),
+                        FormulaItem("Compound Interest", "A = P(1 + R/100)ⁿ,   CI = A - P", "Half-yearly: use R/2 and 2n"),
+                    ),
+                    solvedExample = SolvedExample(
+                        problem = "Find Compound Interest on ₹10,000 for 2 years at 10% p.a. compounded annually.",
+                        steps = listOf(
+                            "A = 10000 × (1 + 10/100)² = 10000 × 1.21 = ₹12,100.",
+                            "CI = 12,100 - 10,000 = ₹2,100.",
+                        ),
+                        answer = "₹2,100",
+                    ),
+                    quizQuestions = listOf(
+                        QuizQuestion(
+                            id = "c8_m2_q1",
+                            prompt = "Total surface area of a cube with edge 5 cm is:",
+                            options = listOf("100 cm²", "125 cm²", "150 cm²", "25 cm²"),
+                            correctIndex = 2,
+                            explanation = "TSA = 6a² = 6 × 25 = 150 cm².",
+                        ),
+                        QuizQuestion(
+                            id = "c8_m2_q2",
+                            prompt = "Sum of all interior angles of a regular hexagon (6 sides) is:",
+                            options = listOf("360°", "540°", "720°", "900°"),
+                            correctIndex = 2,
+                            explanation = "(6 - 2) × 180° = 4 × 180° = 720°.",
+                        ),
+                        QuizQuestion(
+                            id = "c8_m2_q3",
+                            prompt = "Area of a rhombus with diagonals 10 cm and 12 cm is:",
+                            options = listOf("120 cm²", "60 cm²", "44 cm²", "30 cm²"),
+                            correctIndex = 1,
+                            explanation = "Area = ½ × d₁ × d₂ = ½ × 10 × 12 = 60 cm².",
+                        ),
+                    ),
+                ),
+                ChapterData(
+                    id = "c8_math_ch3",
+                    classLevel = 8,
+                    subjectId = "c8_math",
+                    subjectName = "Mathematics",
+                    number = 3,
+                    title = "Squares, Cubes, Negative Exponents & Proportions",
+                    estimatedMinutes = 24,
+                    weightage = "12 Marks",
+                    summary = "Master Pythagorean triplets, square/cube roots, negative powers, and direct vs inverse proportion.",
+                    keyPoints = listOf(
+                        "A perfect square NEVER ends in 2, 3, 7, or 8.",
+                        "Pythagorean Triplet generator for m > 1: (2m, m² - 1, m² + 1).",
+                        "Direct proportion: x / y = constant (more items, more cost). Inverse proportion: x × y = constant (more workers, fewer days).",
+                    ),
+                    formulas = listOf(
+                        FormulaItem("Negative Exponent", "a⁻ᵐ = 1 / aᵐ,   (a/b)⁻ᵐ = (b/a)ᵐ", "Flip fraction to make power positive"),
+                        FormulaItem("Direct vs Inverse", "Direct: x₁/y₁ = x₂/y₂  |  Inverse: x₁y₁ = x₂y₂", "Check relationship direction first"),
+                    ),
+                    solvedExample = SolvedExample(
+                        problem = "If 15 workers can build a wall in 48 hours, how many workers are needed to finish it in 30 hours?",
+                        steps = listOf(
+                            "More workers take less time ⇒ Inverse Proportion (x₁y₁ = x₂y₂).",
+                            "15 × 48 = x × 30 ⇒ 720 = 30x ⇒ x = 24 workers.",
+                        ),
+                        answer = "24 workers",
+                    ),
+                    quizQuestions = listOf(
+                        QuizQuestion(
+                            id = "c8_m3_q1",
+                            prompt = "What is the cube root of 1728 (∛1728)?",
+                            options = listOf("11", "12", "14", "16"),
+                            correctIndex = 1,
+                            explanation = "12 × 12 × 12 = 1728.",
+                        ),
+                        QuizQuestion(
+                            id = "c8_m3_q2",
+                            prompt = "Evaluate: (2⁰ + 3⁻¹) × 3²",
+                            options = listOf("12", "10", "9", "6"),
+                            correctIndex = 0,
+                            explanation = "(1 + 1/3) × 9 = (4/3) × 9 = 12.",
+                        ),
+                        QuizQuestion(
+                            id = "c8_m3_q3",
+                            prompt = "Which number CANNOT be a perfect square?",
+                            options = listOf("1225", "2025", "4098", "1024"),
+                            correctIndex = 2,
+                            explanation = "No perfect square ends in digit 8.",
+                        ),
+                    ),
+                ),
+            ),
+        ),
+
+        // ==================== CLASS 9 MATHEMATICS ====================
+        SubjectData(
+            id = "c9_math",
+            classLevel = 9,
+            streams = allStreams,
+            name = "Mathematics",
+            subtitle = "Full Class 9: Real Numbers, Polynomials, Geometry, Circles, Heron & Stats",
+            category = SubjectCategory.MATH,
+            chapters = listOf(
+                ChapterData(
+                    id = "c9_math_ch1",
+                    classLevel = 9,
+                    subjectId = "c9_math",
+                    subjectName = "Mathematics",
+                    number = 1,
+                    title = "Number Systems & Polynomials (Factor Theorem)",
+                    estimatedMinutes = 28,
+                    weightage = "14 Marks",
+                    summary = "Rationalize surds, apply fractional exponent laws, and factor polynomials with Factor Theorem & cubic identities.",
+                    keyPoints = listOf(
+                        "Rationalizing denominator of 1/(a + √b): multiply numerator & denominator by conjugate (a - √b).",
+                        "Factor Theorem: (x - a) divides p(x) iff p(a) = 0.",
+                        "If a + b + c = 0, then a³ + b³ + c³ = 3abc.",
+                    ),
+                    formulas = listOf(
+                        FormulaItem("Cubic Identities", "(x ± y)³ = x³ ± y³ ± 3xy(x ± y)  |  x³ + y³ = (x+y)(x² - xy + y²)", "x³ - y³ = (x-y)(x² + xy + y²)"),
+                        FormulaItem("Surd Laws", "a^(m/n) = (ⁿ√a)ᵐ  |  (√a + √b)(√a - √b) = a - b", "Used for denominator rationalization"),
+                    ),
+                    solvedExample = SolvedExample(
+                        problem = "Without computing cubes, find (-12)³ + 7³ + 5³.",
+                        steps = listOf(
+                            "Here a + b + c = -12 + 7 + 5 = 0.",
+                            "Therefore a³ + b³ + c³ = 3abc = 3(-12)(7)(5) = -1260.",
+                        ),
+                        answer = "-1260",
+                    ),
+                    quizQuestions = listOf(
+                        QuizQuestion(
+                            id = "c9_m1_q1",
+                            prompt = "If (x - 2) is a factor of x² - kx + 6, find k.",
+                            options = listOf("3", "5", "-5", "6"),
+                            correctIndex = 1,
+                            explanation = "p(2) = 4 - 2k + 6 = 0 ⇒ k = 5.",
+                        ),
+                        QuizQuestion(
+                            id = "c9_m1_q2",
+                            prompt = "Evaluate: (32)^(2/5)",
+                            options = listOf("2", "4", "8", "16"),
+                            correctIndex = 1,
+                            explanation = "32 = 2⁵ ⇒ (2⁵)^(2/5) = 2² = 4.",
+                        ),
+                        QuizQuestion(
+                            id = "c9_m1_q3",
+                            prompt = "Which of the following is an irrational number?",
+                            options = listOf("√16", "22/7", "√7", "0.333..."),
+                            correctIndex = 2,
+                            explanation = "√7 is non-terminating, non-repeating decimal ⇒ irrational.",
+                        ),
+                    ),
+                ),
+                ChapterData(
+                    id = "c9_math_ch2",
+                    classLevel = 9,
+                    subjectId = "c9_math",
+                    subjectName = "Mathematics",
+                    number = 2,
+                    title = "Heron's Formula, Circles & Surface Areas",
+                    estimatedMinutes = 26,
+                    weightage = "14 Marks",
+                    summary = "Master cyclic quadrilaterals, circle chord/angle theorems, Heron's formula, cones, and spheres.",
+                    keyPoints = listOf(
+                        "Angle subtended by an arc at the center is DOUBLE the angle subtended at any point on the remaining circle.",
+                        "Angle in a semicircle is always 90°; opposite angles of a cyclic quadrilateral sum to 180°.",
+                        "Slant height of a cone l = √(r² + h²).",
+                    ),
+                    formulas = listOf(
+                        FormulaItem("Heron's Formula", "Area = √[s(s - a)(s - b)(s - c)],   s = (a+b+c)/2", "Equilateral triangle: (√3/4)a²"),
+                        FormulaItem("Cone & Sphere", "Cone: V = ⅓πr²h, CSA = πrl  |  Sphere: V = 4/3 πr³, SA = 4πr²", "Hemisphere TSA = 3πr²"),
+                    ),
+                    solvedExample = SolvedExample(
+                        problem = "Find the area of a triangle with sides 13 cm, 14 cm, and 15 cm.",
+                        steps = listOf(
+                            "s = (13 + 14 + 15) / 2 = 21 cm.",
+                            "Area = √(21 × 8 × 7 × 6) = 84 cm².",
+                        ),
+                        answer = "84 cm²",
+                    ),
+                    quizQuestions = listOf(
+                        QuizQuestion(
+                            id = "c9_m2_q1",
+                            prompt = "An arc subtends 100° at the center of a circle. The angle subtended on the remaining circumference is:",
+                            options = listOf("200°", "100°", "50°", "80°"),
+                            correctIndex = 2,
+                            explanation = "Circumference angle = half of central angle = 100° / 2 = 50°.",
+                        ),
+                        QuizQuestion(
+                            id = "c9_m2_q2",
+                            prompt = "Slant height of a cone of radius 3 cm and height 4 cm is:",
+                            options = listOf("5 cm", "7 cm", "12 cm", "6 cm"),
+                            correctIndex = 0,
+                            explanation = "l = √(3² + 4²) = 5 cm.",
+                        ),
+                        QuizQuestion(
+                            id = "c9_m2_q3",
+                            prompt = "In a cyclic quadrilateral ABCD, if ∠A = 75°, then ∠C equals:",
+                            options = listOf("75°", "105°", "115°", "90°"),
+                            correctIndex = 1,
+                            explanation = "Opposite angles of a cyclic quadrilateral sum to 180° ⇒ 180° - 75° = 105°.",
+                        ),
+                    ),
+                ),
+                ChapterData(
+                    id = "c9_math_ch3",
+                    classLevel = 9,
+                    subjectId = "c9_math",
+                    subjectName = "Mathematics",
+                    number = 3,
+                    title = "Coordinate Geometry, Linear Eq. (2 Var) & Triangles",
+                    estimatedMinutes = 24,
+                    weightage = "12 Marks",
+                    summary = "Plot Cartesian quadrants, graph ax + by + c = 0, and prove triangle congruence (SSS, SAS, ASA, RHS).",
+                    keyPoints = listOf(
+                        "Quadrant signs: Q1 (+, +), Q2 (-, +), Q3 (-, -), Q4 (+, -). Abscissa = x, Ordinate = y.",
+                        "A linear equation in two variables (ax + by + c = 0) has infinitely many solutions forming a straight line.",
+                        "Mid-Point Theorem: Line joining midpoints of two sides of a triangle is parallel to and half the third side.",
+                    ),
+                    formulas = listOf(
+                        FormulaItem("Congruence Criteria", "SSS • SAS • ASA • AAS • RHS", "CPCT: Corresponding Parts of Congruent Triangles"),
+                        FormulaItem("Axes Equations", "x-axis: y = 0  |  y-axis: x = 0  |  Origin: (0, 0)", "Distance from x-axis = |y|"),
+                    ),
+                    solvedExample = SolvedExample(
+                        problem = "If point (3, 4) lies on the graph of 3y = ax + 7, find the value of a.",
+                        steps = listOf(
+                            "Substitute x = 3, y = 4: 3(4) = a(3) + 7.",
+                            "12 = 3a + 7 ⇒ 3a = 5 ⇒ a = 5/3.",
+                        ),
+                        answer = "a = 5/3",
+                    ),
+                    quizQuestions = listOf(
+                        QuizQuestion(
+                            id = "c9_m3_q1",
+                            prompt = "In which quadrant does the point (-4, 5) lie?",
+                            options = listOf("First", "Second", "Third", "Fourth"),
+                            correctIndex = 1,
+                            explanation = "Negative x and positive y belongs to Quadrant II.",
+                        ),
+                        QuizQuestion(
+                            id = "c9_m3_q2",
+                            prompt = "How many solutions does the linear equation 2x + 3y = 12 have?",
+                            options = listOf("One", "Two", "Infinitely many", "Zero"),
+                            correctIndex = 2,
+                            explanation = "Every point on the line 2x + 3y = 12 is a solution (infinitely many).",
+                        ),
+                        QuizQuestion(
+                            id = "c9_m3_q3",
+                            prompt = "The perpendicular distance of point P(4, -7) from the x-axis is:",
+                            options = listOf("4 units", "7 units", "-7 units", "11 units"),
+                            correctIndex = 1,
+                            explanation = "Distance from x-axis is |y| = |-7| = 7 units.",
+                        ),
+                    ),
+                ),
+            ),
+        ),
+
+        // ==================== CLASS 10 MATHEMATICS (BOARD COMPLETE) ====================
+        SubjectData(
+            id = "c10_math",
+            classLevel = 10,
+            streams = allStreams,
+            name = "Mathematics",
+            subtitle = "Full Class 10 Board: Real No., Quadratics, AP, Trig, Coordinate & Stats",
+            category = SubjectCategory.MATH,
+            chapters = listOf(
+                ChapterData(
+                    id = "c10_math_ch1",
+                    classLevel = 10,
+                    subjectId = "c10_math",
+                    subjectName = "Mathematics",
+                    number = 1,
+                    title = "Quadratic Equations & Arithmetic Progressions",
+                    estimatedMinutes = 30,
+                    weightage = "15 Marks (Board High-Yield)",
+                    summary = "Master Discriminant nature of roots, Quadratic Formula, nth term, and Sum of AP series.",
+                    keyPoints = listOf(
+                        "D = b² - 4ac: D > 0 (two distinct real roots), D = 0 (equal real roots), D < 0 (no real roots).",
+                        "For polynomial ax² + bx + c: sum of zeros α + β = -b/a, product αβ = c/a.",
+                        "HCF(a, b) × LCM(a, b) = a × b for any two positive integers.",
+                    ),
+                    formulas = listOf(
+                        FormulaItem("Quadratic Formula", "x = (-b ± √(b² - 4ac)) / 2a", "D = b² - 4ac"),
+                        FormulaItem("AP nth Term & Sum", "aₙ = a + (n - 1)d  |  Sₙ = (n/2)[2a + (n - 1)d]", "Sₙ = (n/2)(a + l)"),
+                    ),
+                    solvedExample = SolvedExample(
+                        problem = "Find roots of 2x² - 7x + 3 = 0.",
+                        steps = listOf(
+                            "D = (-7)² - 4(2)(3) = 49 - 24 = 25 (√D = 5).",
+                            "x = (7 ± 5) / 4 ⇒ x = 3 or x = 1/2.",
+                        ),
+                        answer = "x = 3, 1/2",
+                    ),
+                    quizQuestions = listOf(
+                        QuizQuestion(
+                            id = "c10_m1_q1",
+                            prompt = "For what value of k does x² + kx + 9 = 0 have equal roots?",
+                            options = listOf("±3", "±6", "±9", "0"),
+                            correctIndex = 1,
+                            explanation = "D = k² - 36 = 0 ⇒ k = ±6.",
+                        ),
+                        QuizQuestion(
+                            id = "c10_m1_q2",
+                            prompt = "Find the 10th term of AP: 2, 7, 12, ...",
+                            options = listOf("45", "47", "52", "42"),
+                            correctIndex = 1,
+                            explanation = "a₁₀ = 2 + 9 × 5 = 47.",
+                        ),
+                        QuizQuestion(
+                            id = "c10_m1_q3",
+                            prompt = "If HCF(26, 91) = 13, find LCM(26, 91).",
+                            options = listOf("182", "91", "364", "2366"),
+                            correctIndex = 0,
+                            explanation = "LCM = (26 × 91) / 13 = 2 × 91 = 182.",
+                        ),
+                    ),
+                ),
+                ChapterData(
+                    id = "c10_math_ch2",
+                    classLevel = 10,
+                    subjectId = "c10_math",
+                    subjectName = "Mathematics",
+                    number = 2,
+                    title = "Trigonometry & Heights and Distances",
+                    estimatedMinutes = 28,
+                    weightage = "12 Marks (Board High-Yield)",
+                    summary = "Master trig ratios, exact angle table (0°–90°), Pythagorean identities, and elevation/depression problems.",
+                    keyPoints = listOf(
+                        "sin 30° = 1/2, sin 45° = 1/√2, sin 60° = √3/2, tan 30° = 1/√3, tan 45° = 1, tan 60° = √3.",
+                        "Always draw a labeled right-triangle diagram for Heights & Distances questions.",
+                    ),
+                    formulas = listOf(
+                        FormulaItem("3 Trig Identities", "sin²θ + cos²θ = 1  |  1 + tan²θ = sec²θ  |  1 + cot²θ = cosec²θ", "Board proof staples"),
+                        FormulaItem("Ratios", "sin θ = P/H,  cos θ = B/H,  tan θ = P/B = sin θ / cos θ", "Pandit Badri Prasad / Har Har Bole"),
+                    ),
+                    solvedExample = SolvedExample(
+                        problem = "Evaluate: 2 tan²45° + cos²30° - sin²60°.",
+                        steps = listOf(
+                            "2(1)² + (√3/2)² - (√3/2)² = 2 + 3/4 - 3/4 = 2.",
+                        ),
+                        answer = "2",
+                    ),
+                    quizQuestions = listOf(
+                        QuizQuestion(
+                            id = "c10_m2_q1",
+                            prompt = "Value of 9 sec²A - 9 tan²A is:",
+                            options = listOf("1", "9", "8", "0"),
+                            correctIndex = 1,
+                            explanation = "9(sec²A - tan²A) = 9 × 1 = 9.",
+                        ),
+                        QuizQuestion(
+                            id = "c10_m2_q2",
+                            prompt = "If sin A = 3/5, then cos A equals:",
+                            options = listOf("4/5", "3/4", "5/4", "2/5"),
+                            correctIndex = 0,
+                            explanation = "cos A = √(1 - 9/25) = 4/5.",
+                        ),
+                        QuizQuestion(
+                            id = "c10_m2_q3",
+                            prompt = "A 10 m pole casts a 10√3 m shadow. The Sun's angle of elevation is:",
+                            options = listOf("30°", "45°", "60°", "90°"),
+                            correctIndex = 0,
+                            explanation = "tan θ = 10 / (10√3) = 1/√3 ⇒ θ = 30°.",
+                        ),
+                    ),
+                ),
+                ChapterData(
+                    id = "c10_math_ch3",
+                    classLevel = 10,
+                    subjectId = "c10_math",
+                    subjectName = "Mathematics",
+                    number = 3,
+                    title = "Coordinate Geometry, Triangles (BPT) & Circles",
+                    estimatedMinutes = 28,
+                    weightage = "15 Marks",
+                    summary = "Apply Distance & Section formulas, Basic Proportionality Theorem (Thales), and Tangent properties of Circles.",
+                    keyPoints = listOf(
+                        "Tangent at any point of a circle is perpendicular to the radius through the point of contact.",
+                        "Lengths of two tangents drawn from an external point to a circle are always equal.",
+                        "Basic Proportionality Theorem (BPT): A line parallel to one side of a triangle divides the other two sides in equal ratio.",
+                    ),
+                    formulas = listOf(
+                        FormulaItem("Distance & Midpoint", "d = √[(x₂-x₁)² + (y₂-y₁)²]  |  M = ((x₁+x₂)/2, (y₁+y₂)/2)", "Origin distance = √(x² + y²)"),
+                        FormulaItem("Section Formula (m₁:m₂)", "x = (m₁x₂ + m₂x₁)/(m₁+m₂),  y = (m₁y₂ + m₂y₁)/(m₁+m₂)", "Internal division formula"),
+                    ),
+                    solvedExample = SolvedExample(
+                        problem = "Find the distance between points A(2, 3) and B(6, 6).",
+                        steps = listOf(
+                            "d = √[(6 - 2)² + (6 - 3)²] = √(4² + 3²).",
+                            "d = √(16 + 9) = √25 = 5 units.",
+                        ),
+                        answer = "5 units",
+                    ),
+                    quizQuestions = listOf(
+                        QuizQuestion(
+                            id = "c10_m3_q1",
+                            prompt = "Distance of point (6, -8) from the origin (0, 0) is:",
+                            options = listOf("14", "10", "8", "100"),
+                            correctIndex = 1,
+                            explanation = "√(6² + (-8)²) = √(36 + 64) = √100 = 10.",
+                        ),
+                        QuizQuestion(
+                            id = "c10_m3_q2",
+                            prompt = "If tangents PA and PB from point P to circle with center O incline at 80°, ∠POA equals:",
+                            options = listOf("50°", "60°", "70°", "80°"),
+                            correctIndex = 0,
+                            explanation = "∠APO = 40°, ∠OAP = 90° ⇒ ∠POA = 180° - 130° = 50°.",
+                        ),
+                        QuizQuestion(
+                            id = "c10_m3_q3",
+                            prompt = "Midpoint of segment joining (-2, 4) and (6, 8) is:",
+                            options = listOf("(2, 6)", "(4, 6)", "(2, 2)", "(4, 12)"),
+                            correctIndex = 0,
+                            explanation = "((-2+6)/2, (4+8)/2) = (2, 6).",
+                        ),
+                    ),
+                ),
+                ChapterData(
+                    id = "c10_math_ch4",
+                    classLevel = 10,
+                    subjectId = "c10_math",
+                    subjectName = "Mathematics",
+                    number = 4,
+                    title = "Areas of Sectors, Statistics & Probability",
+                    estimatedMinutes = 26,
+                    weightage = "14 Marks",
+                    summary = "Calculate sector/segment areas, grouped Mean/Median/Mode, and classic dice/card Probability.",
+                    keyPoints = listOf(
+                        "Empirical relation: 3 Median = Mode + 2 Mean.",
+                        "Probability always lies in [0, 1]; P(E) + P(not E) = 1.",
+                        "A standard deck has 52 cards: 26 red, 26 black, 4 suits of 13 cards, and 12 face cards (J, Q, K).",
+                    ),
+                    formulas = listOf(
+                        FormulaItem("Sector & Arc", "Area = (θ/360°) × πr²  |  Arc Length = (θ/360°) × 2πr", "Minutes hand moves 6° per minute"),
+                        FormulaItem("Empirical & Probability", "Mode = 3 Median - 2 Mean  |  P(E) = Favorable / Total", "Grouped Mode = l + [(f₁-f₀)/(2f₁-f₀-f₂)]×h"),
+                    ),
+                    solvedExample = SolvedExample(
+                        problem = "One card is drawn from a well-shuffled 52-card deck. Find the probability of drawing a red face card.",
+                        steps = listOf(
+                            "Red suits (Hearts + Diamonds) each have 3 face cards (J, Q, K) ⇒ 6 favorable outcomes.",
+                            "P(red face card) = 6 / 52 = 3 / 26.",
+                        ),
+                        answer = "3 / 26",
+                    ),
+                    quizQuestions = listOf(
+                        QuizQuestion(
+                            id = "c10_m4_q1",
+                            prompt = "If P(E) = 0.05, what is the probability of 'not E'?",
+                            options = listOf("0.05", "0.95", "0.50", "1.05"),
+                            correctIndex = 1,
+                            explanation = "P(not E) = 1 - 0.05 = 0.95.",
+                        ),
+                        QuizQuestion(
+                            id = "c10_m4_q2",
+                            prompt = "If Mean = 20 and Median = 22, find Mode using empirical relation.",
+                            options = listOf("24", "26", "28", "18"),
+                            correctIndex = 1,
+                            explanation = "Mode = 3(22) - 2(20) = 66 - 40 = 26.",
+                        ),
+                        QuizQuestion(
+                            id = "c10_m4_q3",
+                            prompt = "Area of a quadrant (θ = 90°) of a circle with radius 7 cm is:",
+                            options = listOf("38.5 cm²", "77 cm²", "154 cm²", "19.25 cm²"),
+                            correctIndex = 0,
+                            explanation = "(1/4) × (22/7) × 49 = 77/2 = 38.5 cm².",
+                        ),
+                    ),
+                ),
+            ),
+        ),
+
+        // ==================== CLASS 11 MATHEMATICS ====================
+        SubjectData(
+            id = "c11_math",
+            classLevel = 11,
+            streams = allStreams,
+            name = "Mathematics",
+            subtitle = "Full Class 11: Sets, Trig, Complex, P&C, Conics & Calculus",
+            category = SubjectCategory.MATH,
+            chapters = listOf(
+                ChapterData(
+                    id = "c11_math_ch1",
+                    classLevel = 11,
+                    subjectId = "c11_math",
+                    subjectName = "Mathematics",
+                    number = 1,
+                    title = "Limits, Derivatives & Straight Lines",
+                    estimatedMinutes = 32,
+                    weightage = "16 Marks",
+                    summary = "Master standard trigonometric/algebraic limits, differentiation rules, and straight line equations.",
+                    keyPoints = listOf(
+                        "Product Rule: (uv)' = u'v + uv'; Quotient Rule: (u/v)' = (u'v - uv') / v².",
+                        "Parallel lines: m₁ = m₂; Perpendicular lines: m₁·m₂ = -1.",
+                    ),
+                    formulas = listOf(
+                        FormulaItem("Key Limits", "lim(x→0) [sin x / x] = 1  |  lim(x→a) (xⁿ - aⁿ)/(x - a) = n·aⁿ⁻¹", "x in radians"),
+                        FormulaItem("Derivatives & Lines", "d/dx (xⁿ) = nxⁿ⁻¹  |  Dist = |Ax₁ + By₁ + C| / √(A² + B²)", "y - y₁ = m(x - x₁)"),
+                    ),
+                    solvedExample = SolvedExample(
+                        problem = "Find derivative of f(x) = 3x⁴ - 5x² + 7x - 9.",
+                        steps = listOf(
+                            "Apply power rule term by term: f'(x) = 12x³ - 10x + 7.",
+                        ),
+                        answer = "12x³ - 10x + 7",
+                    ),
+                    quizQuestions = listOf(
+                        QuizQuestion(
+                            id = "c11_m1_q1",
+                            prompt = "Evaluate: lim(x→0) (sin 5x) / x",
+                            options = listOf("1", "5", "1/5", "0"),
+                            correctIndex = 1,
+                            explanation = "5 × lim(x→0)(sin 5x / 5x) = 5.",
+                        ),
+                        QuizQuestion(
+                            id = "c11_m1_q2",
+                            prompt = "Slope of line perpendicular to y = 2x + 5 is:",
+                            options = listOf("2", "-2", "-1/2", "1/2"),
+                            correctIndex = 2,
+                            explanation = "m₁ × m₂ = -1 ⇒ m₂ = -1/2.",
+                        ),
+                        QuizQuestion(
+                            id = "c11_m1_q3",
+                            prompt = "What is d/dx (cos x)?",
+                            options = listOf("sin x", "-sin x", "sec²x", "-cos x"),
+                            correctIndex = 1,
+                            explanation = "Derivative of cos x is -sin x.",
+                        ),
+                    ),
+                ),
+                ChapterData(
+                    id = "c11_math_ch2",
+                    classLevel = 11,
+                    subjectId = "c11_math",
+                    subjectName = "Mathematics",
+                    number = 2,
+                    title = "Sets, Trigonometric Functions & Complex Numbers",
+                    estimatedMinutes = 30,
+                    weightage = "15 Marks",
+                    summary = "Master De Morgan's Laws, Radian-Degree conversion, double-angle formulas, and iota (i = √-1) algebra.",
+                    keyPoints = listOf(
+                        "A set with n elements has 2ⁿ subsets. De Morgan's Laws: (A ∪ B)' = A' ∩ B'.",
+                        "π radians = 180°. Arc length l = rθ (θ in radians).",
+                        "Powers of i repeat every 4: i¹ = i, i² = -1, i³ = -i, i⁴ = 1.",
+                    ),
+                    formulas = listOf(
+                        FormulaItem("Trig Double Angles", "sin 2x = 2 sin x cos x  |  cos 2x = cos²x - sin²x = 1 - 2sin²x", "sin(A ± B) = sinA cosB ± cosA sinB"),
+                        FormulaItem("Complex Modulus", "z = a + ib  ⇒  |z| = √(a² + b²),   z̄ = a - ib", "z⁻¹ = z̄ / |z|²"),
+                    ),
+                    solvedExample = SolvedExample(
+                        problem = "Find the modulus and multiplicative inverse of z = 3 + 4i.",
+                        steps = listOf(
+                            "|z| = √(3² + 4²) = √25 = 5, so |z|² = 25.",
+                            "z⁻¹ = (3 - 4i) / 25 = 3/25 - (4/25)i.",
+                        ),
+                        answer = "|z| = 5,  z⁻¹ = 3/25 - (4/25)i",
+                    ),
+                    quizQuestions = listOf(
+                        QuizQuestion(
+                            id = "c11_m2_q1",
+                            prompt = "How many subsets does a set with 4 elements have?",
+                            options = listOf("8", "12", "16", "32"),
+                            correctIndex = 2,
+                            explanation = "Number of subsets = 2⁴ = 16.",
+                        ),
+                        QuizQuestion(
+                            id = "c11_m2_q2",
+                            prompt = "What is the value of i³⁹?",
+                            options = listOf("1", "-1", "i", "-i"),
+                            correctIndex = 3,
+                            explanation = "39 = 4(9) + 3 ⇒ i³⁹ = i³ = -i.",
+                        ),
+                        QuizQuestion(
+                            id = "c11_m2_q3",
+                            prompt = "Convert 150° into radians:",
+                            options = listOf("2π/3", "5π/6", "3π/4", "7π/6"),
+                            correctIndex = 1,
+                            explanation = "150 × (π/180) = 5π/6 radians.",
+                        ),
+                    ),
+                ),
+                ChapterData(
+                    id = "c11_math_ch3",
+                    classLevel = 11,
+                    subjectId = "c11_math",
+                    subjectName = "Mathematics",
+                    number = 3,
+                    title = "Permutations, Combinations, Binomial & GP Series",
+                    estimatedMinutes = 30,
+                    weightage = "15 Marks",
+                    summary = "Solve counting arrangements (ⁿPᵣ vs ⁿCᵣ), Binomial Theorem expansion, and Geometric Progressions.",
+                    keyPoints = listOf(
+                        "Permutation (ⁿPᵣ) cares about order; Combination (ⁿCᵣ) selects without caring about order.",
+                        "(a + b)ⁿ has exactly (n + 1) terms.",
+                        "AM ≥ GM always holds for positive real numbers: (a + b)/2 ≥ √(ab).",
+                    ),
+                    formulas = listOf(
+                        FormulaItem("P&C Formulas", "ⁿPᵣ = n! / (n - r)!   |   ⁿCᵣ = n! / [r!(n - r)!]", "ⁿCᵣ = ⁿCₙ₋ᵣ"),
+                        FormulaItem("GP & Binomial", "GP: aₙ = a·rⁿ⁻¹,  S_∞ = a/(1-r) (|r|<1)  |  Tᵣ₊₁ = ⁿCᵣ aⁿ⁻ʳ bʳ", "General term of (a+b)ⁿ"),
+                    ),
+                    solvedExample = SolvedExample(
+                        problem = "In how many ways can a committee of 3 students be chosen from 8 students?",
+                        steps = listOf(
+                            "Order doesn't matter ⇒ use Combination ⁸C₃.",
+                            "⁸C₃ = (8 × 7 × 6) / (3 × 2 × 1) = 56 ways.",
+                        ),
+                        answer = "56 ways",
+                    ),
+                    quizQuestions = listOf(
+                        QuizQuestion(
+                            id = "c11_m3_q1",
+                            prompt = "Find the value of ⁶C₂:",
+                            options = listOf("12", "15", "30", "20"),
+                            correctIndex = 1,
+                            explanation = "⁶C₂ = (6 × 5) / 2 = 15.",
+                        ),
+                        QuizQuestion(
+                            id = "c11_m3_q2",
+                            prompt = "Number of terms in the expansion of (2x + 3y)⁹ is:",
+                            options = listOf("8", "9", "10", "11"),
+                            correctIndex = 2,
+                            explanation = "(a + b)ⁿ always has n + 1 = 9 + 1 = 10 terms.",
+                        ),
+                        QuizQuestion(
+                            id = "c11_m3_q3",
+                            prompt = "Sum of infinite GP: 1 + 1/2 + 1/4 + 1/8 + ... equals:",
+                            options = listOf("1.5", "2", "4", "Infinite"),
+                            correctIndex = 1,
+                            explanation = "S_∞ = a / (1 - r) = 1 / (1 - 1/2) = 2.",
+                        ),
+                    ),
+                ),
+            ),
+        ),
+
+        // ==================== CLASS 12 MATHEMATICS (BOARD + ENTRANCE COMPLETE) ====================
+        SubjectData(
+            id = "c12_math",
+            classLevel = 12,
+            streams = allStreams,
+            name = "Mathematics",
+            subtitle = "Full Class 12 Board: Matrices, Calculus, Integrals, Vectors, 3D & Bayes",
+            category = SubjectCategory.MATH,
+            chapters = listOf(
+                ChapterData(
+                    id = "c12_math_ch1",
+                    classLevel = 12,
+                    subjectId = "c12_math",
+                    subjectName = "Mathematics",
+                    number = 1,
+                    title = "Integrals, Matrices & Determinants",
+                    estimatedMinutes = 34,
+                    weightage = "22 Marks (Board High-Yield)",
+                    summary = "Master Matrix algebra, Adjoint & Inverse, Integration by Parts (ILATE), and King's definite integral property.",
+                    keyPoints = listOf(
+                        "A square matrix A is invertible iff |A| ≠ 0; A·(adj A) = |A|·I.",
+                        "ILATE priority chooses first function u in ∫u·v dx.",
+                        "For odd function f(-x) = -f(x), ∫₋ₐᵃ f(x) dx = 0.",
+                    ),
+                    formulas = listOf(
+                        FormulaItem("Integration & King's Rule", "∫ u·v dx = u∫v dx - ∫(u'∫v dx) dx  |  ∫₀ᵃ f(x)dx = ∫₀ᵃ f(a-x)dx", "Fastest Board definite integral trick"),
+                        FormulaItem("Matrices & Determinants", "A⁻¹ = adj(A) / |A|  |  |kA| = kⁿ|A|  |  |adj A| = |A|ⁿ⁻¹", "For n×n matrix A"),
+                    ),
+                    solvedExample = SolvedExample(
+                        problem = "Evaluate I = ∫₀^(π/2) [sin x / (sin x + cos x)] dx.",
+                        steps = listOf(
+                            "Replace x with (π/2 - x): I = ∫₀^(π/2) [cos x / (cos x + sin x)] dx.",
+                            "Add both: 2I = ∫₀^(π/2) 1 dx = π/2 ⇒ I = π/4.",
+                        ),
+                        answer = "π / 4",
+                    ),
+                    quizQuestions = listOf(
+                        QuizQuestion(
+                            id = "c12_m1_q1",
+                            prompt = "If A is a 3×3 matrix with |A| = 4, what is |2A|?",
+                            options = listOf("8", "16", "32", "64"),
+                            correctIndex = 2,
+                            explanation = "|2A| = 2³ × 4 = 8 × 4 = 32.",
+                        ),
+                        QuizQuestion(
+                            id = "c12_m1_q2",
+                            prompt = "What is ∫ (1 / x) dx?",
+                            options = listOf("x²/2 + C", "log |x| + C", "-1/x² + C", "eˣ + C"),
+                            correctIndex = 1,
+                            explanation = "Antiderivative of 1/x is log |x| + C.",
+                        ),
+                        QuizQuestion(
+                            id = "c12_m1_q3",
+                            prompt = "Evaluate: ∫₋₁¹ x³ dx",
+                            options = listOf("0", "1/2", "1/4", "2"),
+                            correctIndex = 0,
+                            explanation = "x³ is an odd function integrated over symmetric limits [-1, 1] ⇒ 0.",
+                        ),
+                    ),
+                ),
+                ChapterData(
+                    id = "c12_math_ch2",
+                    classLevel = 12,
+                    subjectId = "c12_math",
+                    subjectName = "Mathematics",
+                    number = 2,
+                    title = "Continuity, Differentiability & Differential Equations",
+                    estimatedMinutes = 32,
+                    weightage = "18 Marks (Board High-Yield)",
+                    summary = "Master Chain Rule, Inverse Trig derivatives, Maxima-Minima, and Linear Differential Equations (Integrating Factor).",
+                    keyPoints = listOf(
+                        "Every differentiable function is continuous, but a continuous function (like |x| at 0) need not be differentiable.",
+                        "Second Derivative Test: f'(c) = 0 and f''(c) < 0 ⇒ Local Maximum; f''(c) > 0 ⇒ Local Minimum.",
+                        "Order of a DE is the highest derivative order; Degree is its highest power after clearing radicals.",
+                    ),
+                    formulas = listOf(
+                        FormulaItem("Inverse Trig Derivatives", "d/dx(sin⁻¹x) = 1/√(1-x²)  |  d/dx(tan⁻¹x) = 1/(1+x²)", "Essential for calculus & integrals"),
+                        FormulaItem("Linear DE (IF Method)", "dy/dx + Py = Q  ⇒  IF = e^(∫P dx),   y·IF = ∫(Q·IF)dx + C", "Guaranteed 5-mark Board question"),
+                    ),
+                    solvedExample = SolvedExample(
+                        problem = "Find the Integrating Factor (IF) of the differential equation: dy/dx + (2/x)y = x².",
+                        steps = listOf(
+                            "Compare with dy/dx + Py = Q ⇒ P = 2/x.",
+                            "∫P dx = ∫(2/x) dx = 2 log x = log(x²).",
+                            "IF = e^(log x²) = x².",
+                        ),
+                        answer = "IF = x²",
+                    ),
+                    quizQuestions = listOf(
+                        QuizQuestion(
+                            id = "c12_m2_q1",
+                            prompt = "What is the derivative of tan⁻¹(x) with respect to x?",
+                            options = listOf("1 / √(1 - x²)", "1 / (1 + x²)", "sec²x", "-1 / (1 + x²)"),
+                            correctIndex = 1,
+                            explanation = "d/dx (tan⁻¹x) = 1 / (1 + x²).",
+                        ),
+                        QuizQuestion(
+                            id = "c12_m2_q2",
+                            prompt = "Find the order and degree of (d²y/dx²)³ + (dy/dx)⁴ + y = 0:",
+                            options = listOf("Order 2, Degree 3", "Order 3, Degree 2", "Order 2, Degree 4", "Order 1, Degree 4"),
+                            correctIndex = 0,
+                            explanation = "Highest derivative is d²y/dx² (order 2) raised to power 3 (degree 3).",
+                        ),
+                        QuizQuestion(
+                            id = "c12_m2_q3",
+                            prompt = "The function f(x) = x² - 4x + 5 attains its minimum value at x =",
+                            options = listOf("0", "2", "4", "-2"),
+                            correctIndex = 1,
+                            explanation = "f'(x) = 2x - 4 = 0 ⇒ x = 2, and f''(2) = 2 > 0 (minimum).",
+                        ),
+                    ),
+                ),
+                ChapterData(
+                    id = "c12_math_ch3",
+                    classLevel = 12,
+                    subjectId = "c12_math",
+                    subjectName = "Mathematics",
+                    number = 3,
+                    title = "Vectors, 3D Geometry & Bayes' Probability",
+                    estimatedMinutes = 30,
+                    weightage = "20 Marks (Board High-Yield)",
+                    summary = "Compute Dot & Cross products, shortest distance between skew lines, and conditional & Bayes' Theorem.",
+                    keyPoints = listOf(
+                        "Two non-zero vectors a and b are perpendicular iff a · b = 0; parallel iff a × b = 0.",
+                        "Direction cosines satisfy l² + m² + n² = 1.",
+                        "Bayes' Theorem reverses conditional probability to update event likelihoods given observed evidence.",
+                    ),
+                    formulas = listOf(
+                        FormulaItem("Dot & Cross Product", "a·b = |a||b|cos θ  |  |a×b| = |a||b|sin θ (Area of ||gm)", "Area of triangle = ½|a × b|"),
+                        FormulaItem("Shortest Distance & Bayes", "d = |(a₂-a₁)·(b₁×b₂)| / |b₁×b₂|  |  P(Eᵢ|A) = P(Eᵢ)P(A|Eᵢ) / ΣP(Eⱼ)P(A|Eⱼ)", "Board 5-mark classics"),
+                    ),
+                    solvedExample = SolvedExample(
+                        problem = "Find λ if vectors a = 2î + λĵ + k̂ and b = î - 2ĵ + 3k̂ are perpendicular.",
+                        steps = listOf(
+                            "Perpendicular vectors satisfy a · b = 0.",
+                            "(2)(1) + (λ)(-2) + (1)(3) = 0 ⇒ 2 - 2λ + 3 = 0 ⇒ 2λ = 5.",
+                        ),
+                        answer = "λ = 5 / 2",
+                    ),
+                    quizQuestions = listOf(
+                        QuizQuestion(
+                            id = "c12_m3_q1",
+                            prompt = "For any line in 3D space with direction cosines l, m, n, l² + m² + n² equals:",
+                            options = listOf("0", "1", "2", "3"),
+                            correctIndex = 1,
+                            explanation = "cos²α + cos²β + cos²γ = l² + m² + n² = 1 always.",
+                        ),
+                        QuizQuestion(
+                            id = "c12_m3_q2",
+                            prompt = "If P(A) = 0.4, P(B) = 0.5, and A, B are independent, then P(A ∩ B) is:",
+                            options = listOf("0.9", "0.2", "0.1", "0.8"),
+                            correctIndex = 1,
+                            explanation = "P(A ∩ B) = P(A) × P(B) = 0.4 × 0.5 = 0.2.",
+                        ),
+                        QuizQuestion(
+                            id = "c12_m3_q3",
+                            prompt = "What is î × ĵ in right-handed 3D coordinate system?",
+                            options = listOf("0", "1", "k̂", "-k̂"),
+                            correctIndex = 2,
+                            explanation = "Cyclic cross product: î × ĵ = k̂, ĵ × k̂ = î, k̂ × î = ĵ.",
+                        ),
+                    ),
+                ),
+            ),
+        ),
+    )
+}

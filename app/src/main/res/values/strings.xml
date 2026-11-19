@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Aryan Aseer Academy</string>
+    <string name="app_tagline">Class 7 to 12 • Math, Urdu &amp; All Subjects</string>
+    <string name="nav_learn">Learn</string>
+    <string name="nav_quizzes">Quizzes</string>
+    <string name="nav_planner">Planner</string>
+    <string name="nav_profile">Profile</string>
+    <string name="action_sign_in_google">Sign in with Google</string>
+    <string name="action_sign_out">Sign Out</string>
+    <string name="action_retry">Retry</string>
+    <string name="action_back">Go back</string>
+    <string name="action_save">Save</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_start_quiz">Start Practice Quiz</string>
+    <string name="action_formula_vault">Formula Vault</string>
+    <string name="auth_headline">Master Classes 7 to 12</string>
+    <string name="auth_subheadline">Complete Mathematics, Urdu (اردو), and all Class 7–12 chapters, formulas, Qawaid, MCQs, homework &amp; timetable synced across devices.</string>
+    <string name="error_auth_missing_config">Google Sign-In configuration missing. Please verify Firebase setup.</string>
+    <string name="error_generic_sync">Could not sync with cloud. Please check your connection and try again.</string>
+    <string name="grade_grid_title">Select Your Grade (7–12)</string>
+    <string name="grade_grid_subtitle">Choose your class to open Mathematics &amp; Urdu</string>
+    <string name="core_subjects_badge">Core Subjects</string>
+    <string name="action_open_math">Open Math</string>
+    <string name="action_open_urdu">Open Urdu</string>
+</resources>

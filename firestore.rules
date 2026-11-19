@@ -1,0 +1,290 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Global default-deny safety net
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Core primitives
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() >= 1 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    function isValidTimestamp(ts) {
+      return ts is timestamp && ts <= request.time;
+    }
+
+    // Entity validation helpers
+    function isValidStudentProfile(data) {
+      return data.userId is string && data.userId == request.auth.uid &&
+             data.displayName is string && data.displayName.size() >= 1 && data.displayName.size() <= 60 &&
+             data.schoolName is string && data.schoolName.size() <= 80 &&
+             data.selectedClass is int && data.selectedClass >= 7 && data.selectedClass <= 12 &&
+             data.stream is string && data.stream in ['GENERAL', 'SCIENCE', 'COMMERCE', 'ARTS'] &&
+             data.board is string && data.board in ['CBSE', 'ICSE', 'STATE'] &&
+             data.dailyGoalMinutes is int && data.dailyGoalMinutes >= 15 && data.dailyGoalMinutes <= 360 &&
+             isValidTimestamp(data.createdAt) &&
+             isValidTimestamp(data.updatedAt);
+    }
+
+    function isValidChapterProgress(data) {
+      return data.userId is string && data.userId == request.auth.uid &&
+             data.chapterId is string && data.chapterId.size() >= 1 && data.chapterId.size() <= 80 &&
+             data.classLevel is int && data.classLevel >= 7 && data.classLevel <= 12 &&
+             data.subjectId is string && data.subjectId.size() >= 1 && data.subjectId.size() <= 60 &&
+             data.completed is bool &&
+             data.bookmarked is bool &&
+             isValidTimestamp(data.createdAt) &&
+             isValidTimestamp(data.updatedAt);
+    }
+
+    function isValidQuizAttempt(data) {
+      return data.userId is string && data.userId == request.auth.uid &&
+             data.classLevel is int && data.classLevel >= 7 && data.classLevel <= 12 &&
+             data.subjectId is string && data.subjectId.size() >= 1 && data.subjectId.size() <= 60 &&
+             data.subjectName is string && data.subjectName.size() >= 1 && data.subjectName.size() <= 60 &&
+             data.chapterId is string && data.chapterId.size() >= 1 && data.chapterId.size() <= 80 &&
+             data.chapterTitle is string && data.chapterTitle.size() >= 1 && data.chapterTitle.size() <= 120 &&
+             data.score is int && data.score >= 0 && data.score <= 100 &&
+             data.totalQuestions is int && data.totalQuestions >= 1 && data.totalQuestions <= 100 &&
+             data.score <= data.totalQuestions &&
+             data.accuracyPercent is int && data.accuracyPercent >= 0 && data.accuracyPercent <= 100 &&
+             data.durationSeconds is int && data.durationSeconds >= 0 && data.durationSeconds <= 7200 &&
+             isValidTimestamp(data.createdAt);
+    }
+
+    function isValidHomeworkTask(data) {
+      return data.userId is string && data.userId == request.auth.uid &&
+             data.classLevel is int && data.classLevel >= 7 && data.classLevel <= 12 &&
+             data.subjectName is string && data.subjectName.size() >= 1 && data.subjectName.size() <= 60 &&
+             data.title is string && data.title.size() >= 1 && data.title.size() <= 120 &&
+             data.details is string && data.details.size() <= 500 &&
+             data.dueDateLabel is string && data.dueDateLabel.size() >= 1 && data.dueDateLabel.size() <= 40 &&
+             data.priority is string && data.priority in ['LOW', 'MEDIUM', 'HIGH'] &&
+             data.done is bool &&
+             isValidTimestamp(data.createdAt) &&
+             isValidTimestamp(data.updatedAt);
+    }
+
+    function isValidStudyNote(data) {
+      return data.userId is string && data.userId == request.auth.uid &&
+             data.classLevel is int && data.classLevel >= 7 && data.classLevel <= 12 &&
+             data.subjectName is string && data.subjectName.size() >= 1 && data.subjectName.size() <= 60 &&
+             data.title is string && data.title.size() >= 1 && data.title.size() <= 120 &&
+             data.content is string && data.content.size() >= 1 && data.content.size() <= 2000 &&
+             data.pinned is bool &&
+             isValidTimestamp(data.createdAt) &&
+             isValidTimestamp(data.updatedAt);
+    }
+
+    function isValidTimetableEntry(data) {
+      return data.userId is string && data.userId == request.auth.uid &&
+             data.dayOfWeek is int && data.dayOfWeek >= 1 && data.dayOfWeek <= 7 &&
+             data.subjectName is string && data.subjectName.size() >= 1 && data.subjectName.size() <= 60 &&
+             data.timeSlot is string && data.timeSlot.size() >= 1 && data.timeSlot.size() <= 40 &&
+             data.topic is string && data.topic.size() <= 120 &&
+             isValidTimestamp(data.createdAt) &&
+             isValidTimestamp(data.updatedAt);
+    }
+
+    // 1. Student Profile
+    match /users/{userId} {
+      allow get: if isOwner(userId) && isValidId(userId);
+      allow list: if false;
+
+      allow create: if isOwner(userId) &&
+                       isValidId(userId) &&
+                       incoming().keys().hasAll([
+                         'userId', 'displayName', 'schoolName', 'selectedClass',
+                         'stream', 'board', 'dailyGoalMinutes', 'createdAt', 'updatedAt'
+                       ]) &&
+                       incoming().keys().hasOnly([
+                         'userId', 'displayName', 'schoolName', 'selectedClass',
+                         'stream', 'board', 'dailyGoalMinutes', 'createdAt', 'updatedAt'
+                       ]) &&
+                       isValidStudentProfile(incoming());
+
+      allow update: if isOwner(userId) &&
+                       isValidId(userId) &&
+                       isValidStudentProfile(incoming()) &&
+                       incoming().userId == existing().userId &&
+                       incoming().createdAt == existing().createdAt &&
+                       incoming().diff(existing()).affectedKeys().hasOnly([
+                         'displayName', 'schoolName', 'selectedClass', 'stream',
+                         'board', 'dailyGoalMinutes', 'updatedAt'
+                       ]);
+
+      allow delete: if isOwner(userId) && isValidId(userId);
+
+      // 2. Chapter Progress & Bookmarks
+      match /chapter_progress/{chapterId} {
+        allow get: if isOwner(userId) && isValidId(chapterId);
+        allow list: if isOwner(userId);
+
+        allow create: if isOwner(userId) &&
+                         isValidId(chapterId) &&
+                         incoming().chapterId == chapterId &&
+                         incoming().keys().hasAll([
+                           'userId', 'chapterId', 'classLevel', 'subjectId',
+                           'completed', 'bookmarked', 'createdAt', 'updatedAt'
+                         ]) &&
+                         incoming().keys().hasOnly([
+                           'userId', 'chapterId', 'classLevel', 'subjectId',
+                           'completed', 'bookmarked', 'createdAt', 'updatedAt'
+                         ]) &&
+                         isValidChapterProgress(incoming());
+
+        allow update: if isOwner(userId) &&
+                         isValidId(chapterId) &&
+                         isValidChapterProgress(incoming()) &&
+                         incoming().userId == existing().userId &&
+                         incoming().chapterId == existing().chapterId &&
+                         incoming().createdAt == existing().createdAt &&
+                         incoming().diff(existing()).affectedKeys().hasOnly([
+                           'completed', 'bookmarked', 'classLevel', 'subjectId', 'updatedAt'
+                         ]);
+
+        allow delete: if isOwner(userId) && isValidId(chapterId);
+      }
+
+      // 3. Quiz Attempts (immutable history records)
+      match /quiz_attempts/{attemptId} {
+        allow get: if isOwner(userId) && isValidId(attemptId);
+        allow list: if isOwner(userId);
+
+        allow create: if isOwner(userId) &&
+                         isValidId(attemptId) &&
+                         incoming().keys().hasAll([
+                           'userId', 'classLevel', 'subjectId', 'subjectName',
+                           'chapterId', 'chapterTitle', 'score', 'totalQuestions',
+                           'accuracyPercent', 'durationSeconds', 'createdAt'
+                         ]) &&
+                         incoming().keys().hasOnly([
+                           'userId', 'classLevel', 'subjectId', 'subjectName',
+                           'chapterId', 'chapterTitle', 'score', 'totalQuestions',
+                           'accuracyPercent', 'durationSeconds', 'createdAt'
+                         ]) &&
+                         isValidQuizAttempt(incoming());
+
+        allow update: if false;
+        allow delete: if isOwner(userId) && isValidId(attemptId);
+      }
+
+      // 4. Homework Tasks
+      match /homework/{homeworkId} {
+        allow get: if isOwner(userId) && isValidId(homeworkId);
+        allow list: if isOwner(userId);
+
+        allow create: if isOwner(userId) &&
+                         isValidId(homeworkId) &&
+                         incoming().keys().hasAll([
+                           'userId', 'classLevel', 'subjectName', 'title',
+                           'details', 'dueDateLabel', 'priority', 'done',
+                           'createdAt', 'updatedAt'
+                         ]) &&
+                         incoming().keys().hasOnly([
+                           'userId', 'classLevel', 'subjectName', 'title',
+                           'details', 'dueDateLabel', 'priority', 'done',
+                           'createdAt', 'updatedAt'
+                         ]) &&
+                         isValidHomeworkTask(incoming());
+
+        allow update: if isOwner(userId) &&
+                         isValidId(homeworkId) &&
+                         isValidHomeworkTask(incoming()) &&
+                         incoming().userId == existing().userId &&
+                         incoming().createdAt == existing().createdAt && (
+                           // Action: Toggle completion
+                           incoming().diff(existing()).affectedKeys().hasOnly(['done', 'updatedAt']) ||
+                           // Action: Full task edit
+                           incoming().diff(existing()).affectedKeys().hasOnly([
+                             'classLevel', 'subjectName', 'title', 'details',
+                             'dueDateLabel', 'priority', 'done', 'updatedAt'
+                           ])
+                         );
+
+        allow delete: if isOwner(userId) && isValidId(homeworkId);
+      }
+
+      // 5. Personal Study Notes
+      match /study_notes/{noteId} {
+        allow get: if isOwner(userId) && isValidId(noteId);
+        allow list: if isOwner(userId);
+
+        allow create: if isOwner(userId) &&
+                         isValidId(noteId) &&
+                         incoming().keys().hasAll([
+                           'userId', 'classLevel', 'subjectName', 'title',
+                           'content', 'pinned', 'createdAt', 'updatedAt'
+                         ]) &&
+                         incoming().keys().hasOnly([
+                           'userId', 'classLevel', 'subjectName', 'title',
+                           'content', 'pinned', 'createdAt', 'updatedAt'
+                         ]) &&
+                         isValidStudyNote(incoming());
+
+        allow update: if isOwner(userId) &&
+                         isValidId(noteId) &&
+                         isValidStudyNote(incoming()) &&
+                         incoming().userId == existing().userId &&
+                         incoming().createdAt == existing().createdAt && (
+                           // Action: Toggle pin
+                           incoming().diff(existing()).affectedKeys().hasOnly(['pinned', 'updatedAt']) ||
+                           // Action: Edit note content
+                           incoming().diff(existing()).affectedKeys().hasOnly([
+                             'classLevel', 'subjectName', 'title', 'content', 'pinned', 'updatedAt'
+                           ])
+                         );
+
+        allow delete: if isOwner(userId) && isValidId(noteId);
+      }
+
+      // 6. Weekly Timetable Entries
+      match /timetable/{entryId} {
+        allow get: if isOwner(userId) && isValidId(entryId);
+        allow list: if isOwner(userId);
+
+        allow create: if isOwner(userId) &&
+                         isValidId(entryId) &&
+                         incoming().keys().hasAll([
+                           'userId', 'dayOfWeek', 'subjectName', 'timeSlot',
+                           'topic', 'createdAt', 'updatedAt'
+                         ]) &&
+                         incoming().keys().hasOnly([
+                           'userId', 'dayOfWeek', 'subjectName', 'timeSlot',
+                           'topic', 'createdAt', 'updatedAt'
+                         ]) &&
+                         isValidTimetableEntry(incoming());
+
+        allow update: if isOwner(userId) &&
+                         isValidId(entryId) &&
+                         isValidTimetableEntry(incoming()) &&
+                         incoming().userId == existing().userId &&
+                         incoming().createdAt == existing().createdAt &&
+                         incoming().diff(existing()).affectedKeys().hasOnly([
+                           'dayOfWeek', 'subjectName', 'timeSlot', 'topic', 'updatedAt'
+                         ]);
+
+        allow delete: if isOwner(userId) && isValidId(entryId);
+      }
+    }
+  }
+}

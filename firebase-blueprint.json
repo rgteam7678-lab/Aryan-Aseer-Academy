@@ -1,0 +1,363 @@
+{
+  "entities": {
+    "StudentProfile": {
+      "title": "StudentProfile",
+      "description": "Authenticated student academic profile for Classes 7 to 12.",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "Firebase Auth UID of the student owner."
+        },
+        "displayName": {
+          "type": "string",
+          "description": "Student display name (1-60 chars)."
+        },
+        "schoolName": {
+          "type": "string",
+          "description": "Optional school name (0-80 chars)."
+        },
+        "selectedClass": {
+          "type": "integer",
+          "description": "Active school class from 7 to 12."
+        },
+        "stream": {
+          "type": "string",
+          "enum": ["GENERAL", "SCIENCE", "COMMERCE", "ARTS"],
+          "description": "Academic stream (GENERAL for 7-10; SCIENCE/COMMERCE/ARTS for 11-12)."
+        },
+        "board": {
+          "type": "string",
+          "enum": ["CBSE", "ICSE", "STATE"],
+          "description": "Education board."
+        },
+        "dailyGoalMinutes": {
+          "type": "integer",
+          "description": "Daily self-study goal in minutes (15-360)."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp set via FieldValue.serverTimestamp() on create."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp set via FieldValue.serverTimestamp() on create/update."
+        }
+      },
+      "required": [
+        "userId",
+        "displayName",
+        "schoolName",
+        "selectedClass",
+        "stream",
+        "board",
+        "dailyGoalMinutes",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "ChapterProgress": {
+      "title": "ChapterProgress",
+      "description": "Per-chapter completion and bookmark state for a student.",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "Firebase Auth UID of the student owner."
+        },
+        "chapterId": {
+          "type": "string",
+          "description": "Unique bundled curriculum chapter ID."
+        },
+        "classLevel": {
+          "type": "integer",
+          "description": "Class level (7-12)."
+        },
+        "subjectId": {
+          "type": "string",
+          "description": "Subject identifier."
+        },
+        "completed": {
+          "type": "boolean",
+          "description": "Whether the student marked this chapter complete."
+        },
+        "bookmarked": {
+          "type": "boolean",
+          "description": "Whether the student bookmarked this chapter for revision."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp via FieldValue.serverTimestamp()."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp via FieldValue.serverTimestamp()."
+        }
+      },
+      "required": [
+        "userId",
+        "chapterId",
+        "classLevel",
+        "subjectId",
+        "completed",
+        "bookmarked",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "QuizAttempt": {
+      "title": "QuizAttempt",
+      "description": "Immutable completed practice quiz score record.",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "Firebase Auth UID of the student owner."
+        },
+        "classLevel": {
+          "type": "integer",
+          "description": "Class level (7-12)."
+        },
+        "subjectId": {
+          "type": "string",
+          "description": "Subject identifier."
+        },
+        "subjectName": {
+          "type": "string",
+          "description": "Subject display name."
+        },
+        "chapterId": {
+          "type": "string",
+          "description": "Chapter or subject quiz identifier."
+        },
+        "chapterTitle": {
+          "type": "string",
+          "description": "Chapter or quiz title."
+        },
+        "score": {
+          "type": "integer",
+          "description": "Correctly answered question count (0-100)."
+        },
+        "totalQuestions": {
+          "type": "integer",
+          "description": "Total number of questions in the quiz (1-100)."
+        },
+        "accuracyPercent": {
+          "type": "integer",
+          "description": "Computed percentage accuracy (0-100)."
+        },
+        "durationSeconds": {
+          "type": "integer",
+          "description": "Time taken in seconds (0-7200)."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp via FieldValue.serverTimestamp()."
+        }
+      },
+      "required": [
+        "userId",
+        "classLevel",
+        "subjectId",
+        "subjectName",
+        "chapterId",
+        "chapterTitle",
+        "score",
+        "totalQuestions",
+        "accuracyPercent",
+        "durationSeconds",
+        "createdAt"
+      ]
+    },
+    "HomeworkTask": {
+      "title": "HomeworkTask",
+      "description": "Student homework assignment or study task.",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "Firebase Auth UID of the student owner."
+        },
+        "classLevel": {
+          "type": "integer",
+          "description": "Class level (7-12)."
+        },
+        "subjectName": {
+          "type": "string",
+          "description": "Subject name for the homework."
+        },
+        "title": {
+          "type": "string",
+          "description": "Short homework title (1-120 chars)."
+        },
+        "details": {
+          "type": "string",
+          "description": "Additional homework instructions (0-500 chars)."
+        },
+        "dueDateLabel": {
+          "type": "string",
+          "description": "Due date text label (1-40 chars)."
+        },
+        "priority": {
+          "type": "string",
+          "enum": ["LOW", "MEDIUM", "HIGH"],
+          "description": "Priority level."
+        },
+        "done": {
+          "type": "boolean",
+          "description": "Completion flag."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp via FieldValue.serverTimestamp()."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp via FieldValue.serverTimestamp()."
+        }
+      },
+      "required": [
+        "userId",
+        "classLevel",
+        "subjectName",
+        "title",
+        "details",
+        "dueDateLabel",
+        "priority",
+        "done",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "StudyNote": {
+      "title": "StudyNote",
+      "description": "Student personal revision note or formula snippet.",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "Firebase Auth UID of the student owner."
+        },
+        "classLevel": {
+          "type": "integer",
+          "description": "Class level (7-12)."
+        },
+        "subjectName": {
+          "type": "string",
+          "description": "Subject name."
+        },
+        "title": {
+          "type": "string",
+          "description": "Note heading (1-120 chars)."
+        },
+        "content": {
+          "type": "string",
+          "description": "Note body text (1-2000 chars)."
+        },
+        "pinned": {
+          "type": "boolean",
+          "description": "Whether the note is pinned for quick revision."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp via FieldValue.serverTimestamp()."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp via FieldValue.serverTimestamp()."
+        }
+      },
+      "required": [
+        "userId",
+        "classLevel",
+        "subjectName",
+        "title",
+        "content",
+        "pinned",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "TimetableEntry": {
+      "title": "TimetableEntry",
+      "description": "Weekly school or self-study timetable period.",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "Firebase Auth UID of the student owner."
+        },
+        "dayOfWeek": {
+          "type": "integer",
+          "description": "Day of week from 1 (Mon) to 7 (Sun)."
+        },
+        "subjectName": {
+          "type": "string",
+          "description": "Subject name."
+        },
+        "timeSlot": {
+          "type": "string",
+          "description": "Time range label (e.g. 08:00 AM - 08:45 AM)."
+        },
+        "topic": {
+          "type": "string",
+          "description": "Room, teacher, or self-study focus (0-120 chars)."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp via FieldValue.serverTimestamp()."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp via FieldValue.serverTimestamp()."
+        }
+      },
+      "required": [
+        "userId",
+        "dayOfWeek",
+        "subjectName",
+        "timeSlot",
+        "topic",
+        "createdAt",
+        "updatedAt"
+      ]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/StudentProfile" },
+      "description": "Student profile and active Class 7-12 settings."
+    },
+    "/users/{userId}/chapter_progress/{chapterId}": {
+      "schema": { "$ref": "#/entities/ChapterProgress" },
+      "description": "Student chapter completion and bookmark records."
+    },
+    "/users/{userId}/quiz_attempts/{attemptId}": {
+      "schema": { "$ref": "#/entities/QuizAttempt" },
+      "description": "Student completed practice quiz attempts and scores."
+    },
+    "/users/{userId}/homework/{homeworkId}": {
+      "schema": { "$ref": "#/entities/HomeworkTask" },
+      "description": "Student homework tasks and assignments."
+    },
+    "/users/{userId}/study_notes/{noteId}": {
+      "schema": { "$ref": "#/entities/StudyNote" },
+      "description": "Student personal revision notes."
+    },
+    "/users/{userId}/timetable/{entryId}": {
+      "schema": { "$ref": "#/entities/TimetableEntry" },
+      "description": "Student weekly school and self-study timetable entries."
+    }
+  }
+}

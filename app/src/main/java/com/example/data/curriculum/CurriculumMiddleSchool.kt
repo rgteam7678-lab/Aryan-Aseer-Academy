@@ -1,0 +1,741 @@
+package com.example.data.curriculum
+
+import com.example.data.model.AcademicStream
+import com.example.data.model.ChapterData
+import com.example.data.model.FormulaItem
+import com.example.data.model.QuizQuestion
+import com.example.data.model.SolvedExample
+import com.example.data.model.SubjectCategory
+import com.example.data.model.SubjectData
+
+internal object CurriculumMiddleSchool {
+
+    private val generalStreams = setOf(
+        AcademicStream.GENERAL,
+        AcademicStream.SCIENCE,
+        AcademicStream.COMMERCE,
+        AcademicStream.ARTS,
+    )
+
+    val subjects: List<SubjectData> = listOf(
+        // ==================== CLASS 7 ====================
+        SubjectData(
+            id = "c7_math",
+            classLevel = 7,
+            streams = generalStreams,
+            name = "Mathematics",
+            subtitle = "Integers, Fractions, Triangles & Perimeter",
+            category = SubjectCategory.MATH,
+            chapters = listOf(
+                ChapterData(
+                    id = "c7_math_ch1",
+                    classLevel = 7,
+                    subjectId = "c7_math",
+                    subjectName = "Mathematics",
+                    number = 1,
+                    title = "Integers & Properties",
+                    estimatedMinutes = 20,
+                    weightage = "8 Marks",
+                    summary = "Master operations on positive and negative integers using closure, commutative, associative, and distributive laws.",
+                    keyPoints = listOf(
+                        "Integers include negative numbers, zero, and positive numbers: ..., -3, -2, -1, 0, 1, 2, 3, ...",
+                        "Product of two integers with the same sign is positive; with opposite signs is negative.",
+                        "Zero is the additive identity (a + 0 = a) and 1 is the multiplicative identity (a × 1 = a).",
+                        "Division by zero is undefined for all integers.",
+                    ),
+                    formulas = listOf(
+                        FormulaItem("Distributive Property", "a × (b + c) = (a × b) + (a × c)", "Speeds up mental multiplication"),
+                        FormulaItem("Sign Rule (Product)", "(-) × (-) = (+),  (+) × (-) = (-)", "Even number of negatives gives +"),
+                        FormulaItem("Additive Inverse", "a + (-a) = 0", "Sum of integer and its opposite is 0"),
+                    ),
+                    solvedExample = SolvedExample(
+                        problem = "Evaluate (-26) × 48 + (-48) × (-36) using suitable properties.",
+                        steps = listOf(
+                            "Rewrite (-48) × (-36) as 48 × 36 because product of two negatives is positive.",
+                            "Expression becomes: 48 × (-26) + 48 × 36.",
+                            "Apply distributive law: 48 × (-26 + 36) = 48 × 10.",
+                        ),
+                        answer = "480",
+                    ),
+                    quizQuestions = listOf(
+                        QuizQuestion(
+                            id = "c7_m1_q1",
+                            prompt = "What is the value of (-12) × (-5) × (-2)?",
+                            options = listOf("120", "-120", "-60", "60"),
+                            correctIndex = 1,
+                            explanation = "Three negative signs multiply to a negative result: (-12 × -5) = 60, then 60 × (-2) = -120.",
+                        ),
+                        QuizQuestion(
+                            id = "c7_m1_q2",
+                            prompt = "Which integer is the additive identity?",
+                            options = listOf("1", "-1", "0", "None"),
+                            correctIndex = 2,
+                            explanation = "Adding 0 to any integer leaves its value unchanged (a + 0 = a).",
+                        ),
+                        QuizQuestion(
+                            id = "c7_m1_q3",
+                            prompt = "If temperature drops by 3°C every hour from 24°C, what will it be after 10 hours?",
+                            options = listOf("-6°C", "6°C", "-3°C", "0°C"),
+                            correctIndex = 0,
+                            explanation = "24 + 10 × (-3) = 24 - 30 = -6°C.",
+                        ),
+                    ),
+                ),
+                ChapterData(
+                    id = "c7_math_ch2",
+                    classLevel = 7,
+                    subjectId = "c7_math",
+                    subjectName = "Mathematics",
+                    number = 2,
+                    title = "Triangles & Perimeter",
+                    estimatedMinutes = 25,
+                    weightage = "10 Marks",
+                    summary = "Understand angle sum property, exterior angle theorem, Pythagoras property, and area of circles and parallelograms.",
+                    keyPoints = listOf(
+                        "The sum of all interior angles of any triangle is always 180°.",
+                        "An exterior angle of a triangle equals the sum of its two interior opposite angles.",
+                        "Triangle Inequality: sum of lengths of any two sides is always greater than the third side.",
+                        "In a right-angled triangle, the square on the hypotenuse equals the sum of squares on the other two sides.",
+                    ),
+                    formulas = listOf(
+                        FormulaItem("Pythagoras Property", "c² = a² + b²", "c is hypotenuse opposite the 90° angle"),
+                        FormulaItem("Area of Triangle", "Area = ½ × base × height", "Height must be perpendicular to base"),
+                        FormulaItem("Circumference & Area of Circle", "C = 2πr,  Area = πr²", "Take π ≈ 22/7 or 3.14"),
+                    ),
+                    solvedExample = SolvedExample(
+                        problem = "Find the hypotenuse of a right triangle whose legs measure 6 cm and 8 cm.",
+                        steps = listOf(
+                            "Apply Pythagoras theorem: c² = a² + b².",
+                            "Substitute a = 6 cm and b = 8 cm: c² = 6² + 8² = 36 + 64 = 100.",
+                            "Take square root: c = √100 = 10 cm.",
+                        ),
+                        answer = "10 cm",
+                    ),
+                    quizQuestions = listOf(
+                        QuizQuestion(
+                            id = "c7_m2_q1",
+                            prompt = "Two interior angles of a triangle are 55° and 65°. What is the third angle?",
+                            options = listOf("50°", "60°", "70°", "80°"),
+                            correctIndex = 1,
+                            explanation = "Angle sum is 180°. Third angle = 180° - (55° + 65°) = 180° - 120° = 60°.",
+                        ),
+                        QuizQuestion(
+                            id = "c7_m2_q2",
+                            prompt = "What is the circumference of a circle with radius 7 cm (π = 22/7)?",
+                            options = listOf("22 cm", "44 cm", "154 cm", "88 cm"),
+                            correctIndex = 1,
+                            explanation = "C = 2 × (22/7) × 7 = 44 cm.",
+                        ),
+                        QuizQuestion(
+                            id = "c7_m2_q3",
+                            prompt = "Which set of side lengths can form a valid triangle?",
+                            options = listOf("2, 3, 5 cm", "3, 4, 8 cm", "5, 6, 10 cm", "1, 2, 4 cm"),
+                            correctIndex = 2,
+                            explanation = "5 + 6 = 11 > 10 satisfies the triangle inequality for all pairs.",
+                        ),
+                    ),
+                ),
+            ),
+        ),
+        SubjectData(
+            id = "c7_sci",
+            classLevel = 7,
+            streams = generalStreams,
+            name = "Science",
+            subtitle = "Nutrition, Heat, Acids & Motion",
+            category = SubjectCategory.SCIENCE,
+            chapters = listOf(
+                ChapterData(
+                    id = "c7_sci_ch1",
+                    classLevel = 7,
+                    subjectId = "c7_sci",
+                    subjectName = "Science",
+                    number = 1,
+                    title = "Nutrition in Plants & Heat",
+                    estimatedMinutes = 20,
+                    weightage = "9 Marks",
+                    summary = "Explore photosynthesis, autotrophic vs heterotrophic nutrition, and heat transfer via conduction, convection, and radiation.",
+                    keyPoints = listOf(
+                        "Green plants are autotrophs that synthesize glucose using chlorophyll, sunlight, CO₂, and water.",
+                        "Stomata on leaf surfaces regulate gas exchange and are flanked by guard cells.",
+                        "Conduction occurs mainly in solids; convection in liquids & gases; radiation needs no medium.",
+                        "Clinical thermometer ranges from 35°C to 42°C; normal human body temperature is 37°C.",
+                    ),
+                    formulas = listOf(
+                        FormulaItem("Photosynthesis Equation", "6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂", "Requires Sunlight & Chlorophyll"),
+                        FormulaItem("Celsius to Fahrenheit", "F = (9/5)C + 32", "37°C = 98.6°F"),
+                    ),
+                    solvedExample = SolvedExample(
+                        problem = "Convert a laboratory temperature of 25°C into Fahrenheit.",
+                        steps = listOf(
+                            "Use formula F = (9/5)C + 32.",
+                            "Substitute C = 25: F = (9 × 25) / 5 + 32 = 45 + 32.",
+                        ),
+                        answer = "77°F",
+                    ),
+                    quizQuestions = listOf(
+                        QuizQuestion(
+                            id = "c7_s1_q1",
+                            prompt = "Which mode of heat transfer brings warmth from the Sun to Earth?",
+                            options = listOf("Conduction", "Convection", "Radiation", "Evaporation"),
+                            correctIndex = 2,
+                            explanation = "Radiation transfers heat through vacuum without needing any physical medium.",
+                        ),
+                        QuizQuestion(
+                            id = "c7_s1_q2",
+                            prompt = "Which gas is released during photosynthesis?",
+                            options = listOf("Carbon dioxide", "Nitrogen", "Oxygen", "Hydrogen"),
+                            correctIndex = 2,
+                            explanation = "Plants absorb CO₂ and water and release oxygen (O₂) into the air.",
+                        ),
+                        QuizQuestion(
+                            id = "c7_s1_q3",
+                            prompt = "Sea breeze blows from the sea towards land during:",
+                            options = listOf("Daytime", "Nighttime", "Winter only", "Midnight"),
+                            correctIndex = 0,
+                            explanation = "During the day, land heats faster than sea, warm air rises over land, and cool sea air rushes in.",
+                        ),
+                    ),
+                ),
+                ChapterData(
+                    id = "c7_sci_ch2",
+                    classLevel = 7,
+                    subjectId = "c7_sci",
+                    subjectName = "Science",
+                    number = 2,
+                    title = "Acids, Bases & Motion",
+                    estimatedMinutes = 22,
+                    weightage = "9 Marks",
+                    summary = "Distinguish acids and bases using indicators, neutralization reactions, uniform motion, and distance-time graphs.",
+                    keyPoints = listOf(
+                        "Acids taste sour and turn blue litmus red; bases taste bitter, feel soapy, and turn red litmus blue.",
+                        "Neutralization reaction: Acid + Base → Salt + Water + Heat.",
+                        "SI unit of speed is m/s; uniform motion yields a straight sloping line on a distance-time graph.",
+                    ),
+                    formulas = listOf(
+                        FormulaItem("Speed Formula", "Speed = Distance / Time", "1 m/s = 3.6 km/h"),
+                        FormulaItem("Time Period of Pendulum", "T = Total Time / Number of Oscillations", "Measured in seconds (s)"),
+                    ),
+                    solvedExample = SolvedExample(
+                        problem = "A school bus covers 36 km in 45 minutes. Calculate its average speed in km/h.",
+                        steps = listOf(
+                            "Convert 45 minutes to hours: 45 / 60 = 0.75 hours.",
+                            "Speed = Distance / Time = 36 / 0.75 = 48 km/h.",
+                        ),
+                        answer = "48 km/h",
+                    ),
+                    quizQuestions = listOf(
+                        QuizQuestion(
+                            id = "c7_s2_q1",
+                            prompt = "Turmeric indicator turns reddish-brown when dipped in:",
+                            options = listOf("Lemon juice", "Vinegar", "Soap solution", "Pure water"),
+                            correctIndex = 2,
+                            explanation = "Soap solution is basic; turmeric turns reddish-brown in bases.",
+                        ),
+                        QuizQuestion(
+                            id = "c7_s2_q2",
+                            prompt = "A simple pendulum completes 20 oscillations in 32 seconds. Its time period is:",
+                            options = listOf("0.625 s", "1.6 s", "12 s", "2.0 s"),
+                            correctIndex = 1,
+                            explanation = "Time period T = 32 / 20 = 1.6 seconds.",
+                        ),
+                        QuizQuestion(
+                            id = "c7_s2_q3",
+                            prompt = "Which instrument in a vehicle measures total distance travelled?",
+                            options = listOf("Speedometer", "Odometer", "Barometer", "Anemometer"),
+                            correctIndex = 1,
+                            explanation = "Odometer records cumulative distance while speedometer displays instantaneous speed.",
+                        ),
+                    ),
+                ),
+            ),
+        ),
+        SubjectData(
+            id = "c7_eng",
+            classLevel = 7,
+            streams = generalStreams,
+            name = "English",
+            subtitle = "Grammar, Tenses & Writing Skills",
+            category = SubjectCategory.ENGLISH,
+            chapters = listOf(
+                ChapterData(
+                    id = "c7_eng_ch1",
+                    classLevel = 7,
+                    subjectId = "c7_eng",
+                    subjectName = "English",
+                    number = 1,
+                    title = "Tenses & Active-Passive Voice",
+                    estimatedMinutes = 18,
+                    weightage = "10 Marks",
+                    summary = "Build error-free sentences using present, past, and future tenses along with voice conversion rules.",
+                    keyPoints = listOf(
+                        "Simple Present expresses universal truths and habits; Present Continuous describes ongoing actions.",
+                        "In Passive Voice, the object of the active sentence becomes the subject: be + past participle (V3).",
+                        "Always match verb agreement with the new subject in passive constructions.",
+                    ),
+                    formulas = listOf(
+                        FormulaItem("Present Perfect", "Subject + has/have + V3", "e.g., She has completed her homework."),
+                        FormulaItem("Simple Past Passive", "Object + was/were + V3 + by + Subject", "e.g., The letter was written by Riya."),
+                    ),
+                    solvedExample = SolvedExample(
+                        problem = "Convert to Passive Voice: 'The teacher praised the students.'",
+                        steps = listOf(
+                            "Identify Subject (The teacher), Verb (praised — Simple Past), Object (the students).",
+                            "Move object to subject position and use 'were + praised' (plural).",
+                        ),
+                        answer = "The students were praised by the teacher.",
+                    ),
+                    quizQuestions = listOf(
+                        QuizQuestion(
+                            id = "c7_e1_q1",
+                            prompt = "Choose the correct passive form of 'Aarav plays cricket.'",
+                            options = listOf(
+                                "Cricket was played by Aarav.",
+                                "Cricket is played by Aarav.",
+                                "Cricket is playing by Aarav.",
+                                "Cricket has played by Aarav.",
+                            ),
+                            correctIndex = 1,
+                            explanation = "Simple Present active converts to 'is/are + V3': Cricket is played by Aarav.",
+                        ),
+                        QuizQuestion(
+                            id = "c7_e1_q2",
+                            prompt = "She _____ to the library every Saturday.",
+                            options = listOf("go", "goes", "going", "gone"),
+                            correctIndex = 1,
+                            explanation = "Third-person singular subject 'She' takes '-es' in Simple Present.",
+                        ),
+                        QuizQuestion(
+                            id = "c7_e1_q3",
+                            prompt = "Identify the tense: 'They have been practicing since morning.'",
+                            options = listOf("Present Continuous", "Past Perfect", "Present Perfect Continuous", "Simple Present"),
+                            correctIndex = 2,
+                            explanation = "'have been + V-ing' with 'since' denotes Present Perfect Continuous.",
+                        ),
+                    ),
+                ),
+            ),
+        ),
+        SubjectData(
+            id = "c7_sst",
+            classLevel = 7,
+            streams = generalStreams,
+            name = "Social Science",
+            subtitle = "Medieval India, Environment & Equality",
+            category = SubjectCategory.SOCIAL,
+            chapters = listOf(
+                ChapterData(
+                    id = "c7_sst_ch1",
+                    classLevel = 7,
+                    subjectId = "c7_sst",
+                    subjectName = "Social Science",
+                    number = 1,
+                    title = "Interior of the Earth & Democracy",
+                    estimatedMinutes = 18,
+                    weightage = "8 Marks",
+                    summary = "Understand Earth's crust, mantle, core, rock cycle, and constitutional equality in Indian democracy.",
+                    keyPoints = listOf(
+                        "Earth has three concentric layers: Crust (thinnest), Mantle (2900 km thick), and Core (NiFe — Nickel & Iron).",
+                        "Three major rock types: Igneous (primary), Sedimentary (contain fossils), and Metamorphic (formed under heat & pressure).",
+                        "Universal Adult Franchise grants every citizen aged 18+ the right to vote without discrimination.",
+                    ),
+                    formulas = listOf(
+                        FormulaItem("Continental Crust", "SiAl = Silica + Alumina", "Oceanic crust is SiMa (Silica + Magnesium)"),
+                        FormulaItem("Core Composition", "NiFe = Nickel + Ferrous (Iron)", "Extreme temperature and pressure"),
+                    ),
+                    solvedExample = SolvedExample(
+                        problem = "How do igneous rocks transform into sedimentary rocks in the rock cycle?",
+                        steps = listOf(
+                            "Weathering and erosion break igneous rocks into small fragments called sediments.",
+                            "Wind and water transport and deposit sediments in layers.",
+                            "Over time, compression and cementation harden layers into sedimentary rocks.",
+                        ),
+                        answer = "Through weathering, deposition, compression, and cementation.",
+                    ),
+                    quizQuestions = listOf(
+                        QuizQuestion(
+                            id = "c7_st1_q1",
+                            prompt = "Which type of rocks commonly contain fossils of plants and animals?",
+                            options = listOf("Igneous", "Sedimentary", "Metamorphic", "Molten magma"),
+                            correctIndex = 1,
+                            explanation = "Sedimentary rocks form in deposited layers that trap organic remains.",
+                        ),
+                        QuizQuestion(
+                            id = "c7_st1_q2",
+                            prompt = "What is the minimum voting age under Universal Adult Franchise in India?",
+                            options = listOf("16 years", "18 years", "21 years", "25 years"),
+                            correctIndex = 1,
+                            explanation = "Every Indian citizen aged 18 or above has equal voting rights.",
+                        ),
+                        QuizQuestion(
+                            id = "c7_st1_q3",
+                            prompt = "Limestone changes under high heat and pressure into:",
+                            options = listOf("Granite", "Basalt", "Marble", "Sandstone"),
+                            correctIndex = 2,
+                            explanation = "Marble is a metamorphic rock formed from limestone.",
+                        ),
+                    ),
+                ),
+            ),
+        ),
+
+        // ==================== CLASS 8 ====================
+        SubjectData(
+            id = "c8_math",
+            classLevel = 8,
+            streams = generalStreams,
+            name = "Mathematics",
+            subtitle = "Linear Equations, Exponents & Mensuration",
+            category = SubjectCategory.MATH,
+            chapters = listOf(
+                ChapterData(
+                    id = "c8_math_ch1",
+                    classLevel = 8,
+                    subjectId = "c8_math",
+                    subjectName = "Mathematics",
+                    number = 1,
+                    title = "Algebraic Identities & Linear Equations",
+                    estimatedMinutes = 25,
+                    weightage = "10 Marks",
+                    summary = "Solve single-variable linear equations and factorize expressions swiftly with standard algebraic identities.",
+                    keyPoints = listOf(
+                        "Transposing a term from LHS to RHS changes its sign (+ becomes -, × becomes ÷).",
+                        "A linear equation in one variable has highest power 1 and a unique root.",
+                        "Standard identities allow rapid mental squaring and polynomial factorization.",
+                    ),
+                    formulas = listOf(
+                        FormulaItem("Square of Sum", "(a + b)² = a² + 2ab + b²", "Use for quick squaring like 103²"),
+                        FormulaItem("Square of Difference", "(a - b)² = a² - 2ab + b²", "Use for 98² = (100 - 2)²"),
+                        FormulaItem("Difference of Squares", "a² - b² = (a + b)(a - b)", "Most frequent exam identity"),
+                    ),
+                    solvedExample = SolvedExample(
+                        problem = "Evaluate 99² using an algebraic identity.",
+                        steps = listOf(
+                            "Write 99 = 100 - 1.",
+                            "Apply (a - b)² = a² - 2ab + b² with a = 100, b = 1.",
+                            "100² - 2(100)(1) + 1² = 10000 - 200 + 1 = 9801.",
+                        ),
+                        answer = "9801",
+                    ),
+                    quizQuestions = listOf(
+                        QuizQuestion(
+                            id = "c8_m1_q1",
+                            prompt = "Solve for x: 3x - 7 = 2x + 5",
+                            options = listOf("2", "12", "-2", "6"),
+                            correctIndex = 1,
+                            explanation = "3x - 2x = 5 + 7 ⇒ x = 12.",
+                        ),
+                        QuizQuestion(
+                            id = "c8_m1_q2",
+                            prompt = "Factorize: x² - 49",
+                            options = listOf("(x - 7)²", "(x + 7)²", "(x + 7)(x - 7)", "(x + 49)(x - 1)"),
+                            correctIndex = 2,
+                            explanation = "Using a² - b² = (a + b)(a - b), x² - 7² = (x + 7)(x - 7).",
+                        ),
+                        QuizQuestion(
+                            id = "c8_m1_q3",
+                            prompt = "What is the value of (2⁰ + 3⁻¹) × 3²?",
+                            options = listOf("12", "10", "9", "6"),
+                            correctIndex = 0,
+                            explanation = "(1 + 1/3) × 9 = (4/3) × 9 = 12.",
+                        ),
+                    ),
+                ),
+                ChapterData(
+                    id = "c8_math_ch2",
+                    classLevel = 8,
+                    subjectId = "c8_math",
+                    subjectName = "Mathematics",
+                    number = 2,
+                    title = "Mensuration & Compound Interest",
+                    estimatedMinutes = 25,
+                    weightage = "10 Marks",
+                    summary = "Compute surface areas and volumes of cuboids, cubes, and cylinders, plus annual compound interest.",
+                    keyPoints = listOf(
+                        "Lateral surface area excludes top and bottom bases; Total surface area includes all faces.",
+                        "1 m³ = 1000 litres and 1000 cm³ = 1 litre.",
+                        "In Compound Interest, interest earned each year gets added to the principal for the next year.",
+                    ),
+                    formulas = listOf(
+                        FormulaItem("Cylinder TSA & Volume", "TSA = 2πr(r + h),  V = πr²h", "CSA = 2πrh"),
+                        FormulaItem("Area of Trapezium", "Area = ½ × (a + b) × h", "a, b are parallel sides"),
+                        FormulaItem("Compound Amount", "A = P(1 + R/100)ⁿ", "CI = A - P"),
+                    ),
+                    solvedExample = SolvedExample(
+                        problem = "Find the compound interest on ₹10,000 for 2 years at 10% p.a. compounded annually.",
+                        steps = listOf(
+                            "A = P(1 + R/100)ⁿ = 10000 × (1 + 10/100)² = 10000 × 1.1 × 1.1.",
+                            "A = ₹12,100.",
+                            "CI = A - P = 12,100 - 10,000 = ₹2,100.",
+                        ),
+                        answer = "₹2,100",
+                    ),
+                    quizQuestions = listOf(
+                        QuizQuestion(
+                            id = "c8_m2_q1",
+                            prompt = "Find the total surface area of a cube with edge 5 cm.",
+                            options = listOf("100 cm²", "125 cm²", "150 cm²", "25 cm²"),
+                            correctIndex = 2,
+                            explanation = "TSA of cube = 6a² = 6 × 25 = 150 cm².",
+                        ),
+                        QuizQuestion(
+                            id = "c8_m2_q2",
+                            prompt = "If radius of a cylinder is doubled keeping height same, its volume becomes:",
+                            options = listOf("2 times", "4 times", "8 times", "Unchanged"),
+                            correctIndex = 1,
+                            explanation = "V = πr²h. Replacing r with 2r gives π(2r)²h = 4πr²h.",
+                        ),
+                        QuizQuestion(
+                            id = "c8_m2_q3",
+                            prompt = "A trapezium has parallel sides 8 cm and 12 cm, height 5 cm. Its area is:",
+                            options = listOf("50 cm²", "100 cm²", "40 cm²", "60 cm²"),
+                            correctIndex = 0,
+                            explanation = "Area = ½ × (8 + 12) × 5 = ½ × 20 × 5 = 50 cm².",
+                        ),
+                    ),
+                ),
+            ),
+        ),
+        SubjectData(
+            id = "c8_sci",
+            classLevel = 8,
+            streams = generalStreams,
+            name = "Science",
+            subtitle = "Force, Pressure, Sound & Light",
+            category = SubjectCategory.SCIENCE,
+            chapters = listOf(
+                ChapterData(
+                    id = "c8_sci_ch1",
+                    classLevel = 8,
+                    subjectId = "c8_sci",
+                    subjectName = "Science",
+                    number = 1,
+                    title = "Force, Pressure & Friction",
+                    estimatedMinutes = 22,
+                    weightage = "9 Marks",
+                    summary = "Analyze contact and non-contact forces, pressure exerted by liquids and air, and types of friction.",
+                    keyPoints = listOf(
+                        "Pressure increases when area of contact decreases (e.g., sharp knives, pointed nails).",
+                        "Liquids exert equal pressure at the same depth on the walls of a container.",
+                        "Rolling friction < Sliding friction < Static friction.",
+                        "Streamlined shapes reduce fluid drag (air/water friction) in airplanes and fish.",
+                    ),
+                    formulas = listOf(
+                        FormulaItem("Pressure", "P = Force / Area  (N/m² or Pa)", "1 Pascal = 1 N/m²"),
+                        FormulaItem("Net Force", "F_net = F₁ + F₂ (same dir) or |F₁ - F₂| (opp dir)", "Balanced forces give F_net = 0"),
+                    ),
+                    solvedExample = SolvedExample(
+                        problem = "A force of 250 N acts on an area of 0.5 m². Calculate the pressure exerted.",
+                        steps = listOf(
+                            "Use P = F / A.",
+                            "P = 250 / 0.5 = 500 Pa.",
+                        ),
+                        answer = "500 Pa",
+                    ),
+                    quizQuestions = listOf(
+                        QuizQuestion(
+                            id = "c8_s1_q1",
+                            prompt = "Why do school bags have wide straps?",
+                            options = listOf(
+                                "To increase force",
+                                "To increase area and reduce pressure on shoulders",
+                                "To increase friction",
+                                "To reduce bag mass",
+                            ),
+                            correctIndex = 1,
+                            explanation = "Wider straps spread weight over larger area, lowering pressure (P = F/A).",
+                        ),
+                        QuizQuestion(
+                            id = "c8_s1_q2",
+                            prompt = "Which type of friction has the smallest magnitude?",
+                            options = listOf("Static friction", "Sliding friction", "Rolling friction", "Limiting friction"),
+                            correctIndex = 2,
+                            explanation = "Rolling reduces interlocking between surfaces, so ball bearings convert sliding to rolling friction.",
+                        ),
+                        QuizQuestion(
+                            id = "c8_s1_q3",
+                            prompt = "Which of the following is a non-contact force?",
+                            options = listOf("Muscular force", "Friction", "Electrostatic force", "Tension"),
+                            correctIndex = 2,
+                            explanation = "Electrostatic, magnetic, and gravitational forces act at a distance without physical contact.",
+                        ),
+                    ),
+                ),
+                ChapterData(
+                    id = "c8_sci_ch2",
+                    classLevel = 8,
+                    subjectId = "c8_sci",
+                    subjectName = "Science",
+                    number = 2,
+                    title = "Sound & Light Reflection",
+                    estimatedMinutes = 20,
+                    weightage = "9 Marks",
+                    summary = "Study frequency, amplitude, audible range, laws of reflection, and human eye structure.",
+                    keyPoints = listOf(
+                        "Sound requires a material medium to travel and cannot propagate through a vacuum.",
+                        "Loudness depends on Amplitude² (measured in dB); Pitch depends on Frequency (Hz).",
+                        "Human audible range is 20 Hz to 20,000 Hz (20 kHz).",
+                        "Laws of Reflection: Angle of incidence equals angle of reflection (∠i = ∠r).",
+                    ),
+                    formulas = listOf(
+                        FormulaItem("Frequency & Time Period", "f = 1 / T", "Unit of frequency is Hertz (Hz)"),
+                        FormulaItem("Number of Images (Two Mirrors)", "n = (360° / θ) - 1", "When mirrors are at angle θ"),
+                    ),
+                    solvedExample = SolvedExample(
+                        problem = "Two plane mirrors are placed at 90° to each other. How many images of an object placed between them are formed?",
+                        steps = listOf(
+                            "Use n = (360° / θ) - 1 with θ = 90°.",
+                            "n = (360 / 90) - 1 = 4 - 1 = 3 images.",
+                        ),
+                        answer = "3 images",
+                    ),
+                    quizQuestions = listOf(
+                        QuizQuestion(
+                            id = "c8_s2_q1",
+                            prompt = "If a light ray strikes a plane mirror at an angle of incidence of 35°, the angle of reflection is:",
+                            options = listOf("55°", "35°", "70°", "90°"),
+                            correctIndex = 1,
+                            explanation = "By the first law of reflection, ∠i = ∠r = 35°.",
+                        ),
+                        QuizQuestion(
+                            id = "c8_s2_q2",
+                            prompt = "The pitch of a sound is determined by its:",
+                            options = listOf("Amplitude", "Frequency", "Speed", "Medium density"),
+                            correctIndex = 1,
+                            explanation = "Higher frequency vibrations produce a higher, shriller pitch.",
+                        ),
+                        QuizQuestion(
+                            id = "c8_s2_q3",
+                            prompt = "Which part of the human eye controls the amount of light entering it?",
+                            options = listOf("Retina", "Iris", "Optic nerve", "Blind spot"),
+                            correctIndex = 1,
+                            explanation = "The iris expands or contracts the pupil to regulate incoming light.",
+                        ),
+                    ),
+                ),
+            ),
+        ),
+        SubjectData(
+            id = "c8_sst",
+            classLevel = 8,
+            streams = generalStreams,
+            name = "Social Science",
+            subtitle = "1857 Revolt, Resources & Indian Constitution",
+            category = SubjectCategory.SOCIAL,
+            chapters = listOf(
+                ChapterData(
+                    id = "c8_sst_ch1",
+                    classLevel = 8,
+                    subjectId = "c8_sst",
+                    subjectName = "Social Science",
+                    number = 1,
+                    title = "The Indian Constitution & Fundamental Rights",
+                    estimatedMinutes = 20,
+                    weightage = "9 Marks",
+                    summary = "Understand Federalism, Separation of Powers, Secularism, and the six Fundamental Rights.",
+                    keyPoints = listOf(
+                        "Dr. B.R. Ambedkar chaired the Drafting Committee of the Indian Constitution, adopted on 26 Nov 1949.",
+                        "Separation of Powers divides authority across Legislature, Executive, and Judiciary to prevent misuse.",
+                        "Six Fundamental Rights: Equality, Freedom, Against Exploitation, Freedom of Religion, Cultural & Educational Rights, Constitutional Remedies.",
+                    ),
+                    formulas = listOf(
+                        FormulaItem("Key Dates", "Adopted: 26 Nov 1949 | Enforced: 26 Jan 1950", "Republic Day celebrates enforcement"),
+                        FormulaItem("3 Organs of State", "Legislature (Laws) • Executive (Implements) • Judiciary (Justice)", "Checks and balances"),
+                    ),
+                    solvedExample = SolvedExample(
+                        problem = "Why is the Right to Constitutional Remedies called the 'heart and soul' of the Constitution?",
+                        steps = listOf(
+                            "It empowers citizens to move the High Court or Supreme Court directly if any Fundamental Right is violated.",
+                            "Without an enforcement mechanism, Fundamental Rights would remain mere declarations.",
+                        ),
+                        answer = "Because it guarantees judicial enforcement of all Fundamental Rights.",
+                    ),
+                    quizQuestions = listOf(
+                        QuizQuestion(
+                            id = "c8_st1_q1",
+                            prompt = "Who was the Chairman of the Drafting Committee of the Indian Constitution?",
+                            options = listOf("Dr. Rajendra Prasad", "Dr. B.R. Ambedkar", "Sardar Patel", "Jawaharlal Nehru"),
+                            correctIndex = 1,
+                            explanation = "Dr. B.R. Ambedkar chaired the Drafting Committee and is known as the Father of the Indian Constitution.",
+                        ),
+                        QuizQuestion(
+                            id = "c8_st1_q2",
+                            prompt = "Which system distributes power between Central and State governments?",
+                            options = listOf("Monarchy", "Federalism", "Unitary rule", "Oligarchy"),
+                            correctIndex = 1,
+                            explanation = "Federalism refers to the existence of more than one level of government in the country.",
+                        ),
+                        QuizQuestion(
+                            id = "c8_st1_q3",
+                            prompt = "How many Fundamental Rights are currently guaranteed by the Indian Constitution?",
+                            options = listOf("5", "6", "7", "8"),
+                            correctIndex = 1,
+                            explanation = "There are 6 Fundamental Rights in Part III of the Constitution.",
+                        ),
+                    ),
+                ),
+            ),
+        ),
+        SubjectData(
+            id = "c8_cs",
+            classLevel = 8,
+            streams = generalStreams,
+            name = "Computer & Hindi",
+            subtitle = "Logic, Networking & Hindi Vyakaran",
+            category = SubjectCategory.COMPUTER,
+            chapters = listOf(
+                ChapterData(
+                    id = "c8_cs_ch1",
+                    classLevel = 8,
+                    subjectId = "c8_cs",
+                    subjectName = "Computer & Hindi",
+                    number = 1,
+                    title = "Computer Networks & Cyber Safety",
+                    estimatedMinutes = 16,
+                    weightage = "8 Marks",
+                    summary = "Learn LAN, MAN, WAN topologies, IP addresses, HTTP/HTTPS, and safe digital citizenship.",
+                    keyPoints = listOf(
+                        "LAN spans a school/building; MAN spans a city; WAN connects countries globally (e.g., Internet).",
+                        "HTTPS encrypts web communication using TLS/SSL to protect passwords and personal data.",
+                        "Strong passwords combine uppercase, lowercase, digits, and symbols with two-factor authentication.",
+                    ),
+                    formulas = listOf(
+                        FormulaItem("Data Units", "1 Byte = 8 bits | 1 KB = 1024 Bytes | 1 MB = 1024 KB", "Binary storage hierarchy"),
+                        FormulaItem("Network Scope", "PAN < LAN < MAN < WAN", "Increasing geographic range"),
+                    ),
+                    solvedExample = SolvedExample(
+                        problem = "How many bits are there in 4 Bytes?",
+                        steps = listOf(
+                            "1 Byte = 8 bits.",
+                            "4 Bytes = 4 × 8 = 32 bits.",
+                        ),
+                        answer = "32 bits",
+                    ),
+                    quizQuestions = listOf(
+                        QuizQuestion(
+                            id = "c8_c1_q1",
+                            prompt = "Which network type connects computers inside a single school computer lab?",
+                            options = listOf("WAN", "LAN", "MAN", "Satellite"),
+                            correctIndex = 1,
+                            explanation = "A Local Area Network (LAN) covers a small area like a school lab or office.",
+                        ),
+                        QuizQuestion(
+                            id = "c8_c1_q2",
+                            prompt = "What does the 'S' in HTTPS stand for?",
+                            options = listOf("Simple", "Server", "Secure", "Standard"),
+                            correctIndex = 2,
+                            explanation = "HTTPS stands for Hypertext Transfer Protocol Secure.",
+                        ),
+                        QuizQuestion(
+                            id = "c8_c1_q3",
+                            prompt = "1 Kilobyte (KB) equals how many Bytes?",
+                            options = listOf("100", "512", "1000", "1024"),
+                            correctIndex = 3,
+                            explanation = "In binary computing memory, 1 KB = 2¹⁰ = 1024 Bytes.",
+                        ),
+                    ),
+                ),
+            ),
+        ),
+    )
+}
